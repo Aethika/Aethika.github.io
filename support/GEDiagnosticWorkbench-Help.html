@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2K97YS6ZMQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    gtag('config', 'G-2K97YS6ZMQ');
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GEDiagnosticWorkbench Help | Aethika</title>
+  <meta name="title" content="GEDiagnosticWorkbench Help | Aethika">
+  <meta name="description" content="Help documentation for the Aethika Governance Effectiveness Diagnostic Workbench.">
+  <meta name="author" content="Levine Naidoo">
+  <meta name="theme-color" content="#081826">
+  <link rel="canonical" href="https://www.aethika.com/GEDiagnosticWorkbench-Help.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="GEDiagnosticWorkbench Help | Aethika">
+  <meta property="og:description" content="User guide for the Governance Effectiveness Diagnostic Workbench.">
+  <meta property="og:image" content="https://www.aethika.com/assets/img/aethika-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Serif:ital,wght@0,500;0,600;1,500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --aethika-bg: #081826;
+      --aethika-bg-2: #0d2132;
+      --aethika-panel: rgba(255,255,255,0.065);
+      --aethika-panel-2: rgba(255,255,255,0.10);
+      --aethika-border: rgba(255,255,255,0.12);
+      --aethika-text: #e8f0f8;
+      --aethika-muted: rgba(232,240,248,0.72);
+      --aethika-faint: rgba(232,240,248,0.52);
+      --aethika-accent: #42d3c2;
+      --aethika-accent-2: #d8c48a;
+      --content-bg: #f8fafc;
+      --content-text: #334155;
+      --content-heading: #0f172a;
+      --content-border: #dbe4ee;
+      --content-muted: #64748b;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 15% 0%, rgba(66,211,194,.16), transparent 30%), var(--aethika-bg);
+      color: var(--aethika-text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+    }
+    a { color: inherit; }
+
+    .help-header {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      background: rgba(8,24,38,0.94);
+      border-bottom: 1px solid var(--aethika-border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      min-width: 0;
+    }
+    .brand img {
+      width: 118px;
+      height: auto;
+      object-fit: contain;
+    }
+    .brand-mark-fallback {
+      font-family: "Space Grotesk", Inter, sans-serif;
+      font-weight: 800;
+      letter-spacing: .13em;
+      font-size: 1rem;
+      color: #fff;
+    }
+    .help-title { min-width: 0; }
+    .help-title h1 {
+      margin: 0;
+      font-family: "Space Grotesk", Inter, sans-serif;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: #ffffff;
+      line-height: 1.2;
+    }
+    .help-title p {
+      margin: .2rem 0 0;
+      color: var(--aethika-muted);
+      font-size: .92rem;
+    }
+    .header-actions {
+      display: flex;
+      gap: .75rem;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .btn-aethika, .btn-ghost {
+      border-radius: 999px;
+      padding: .7rem 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      border: 1px solid var(--aethika-border);
+      cursor: pointer;
+      font: inherit;
+      white-space: nowrap;
+    }
+    .btn-aethika {
+      color: #061521;
+      background: var(--aethika-accent);
+      border-color: var(--aethika-accent);
+    }
+    .btn-aethika:hover { filter: brightness(1.06); }
+    .btn-ghost {
+      color: var(--aethika-text);
+      background: rgba(255,255,255,.04);
+    }
+    .btn-ghost:hover { border-color: var(--aethika-accent); color: #fff; }
+
+    .help-shell {
+      display: grid;
+      grid-template-columns: 340px minmax(0, 1fr);
+      min-height: calc(100vh - 78px);
+    }
+    .help-nav {
+      background: rgba(13,33,50,0.92);
+      border-right: 1px solid var(--aethika-border);
+      padding: 1.3rem;
+      overflow-y: auto;
+      max-height: calc(100vh - 78px);
+      position: sticky;
+      top: 78px;
+    }
+    .help-nav.hidden { display: none; }
+    .help-shell.nav-hidden { grid-template-columns: 1fr; }
+    .nav-card {
+      border: 1px solid var(--aethika-border);
+      background: rgba(255,255,255,.045);
+      border-radius: 1rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .nav-card h2 {
+      color: #fff;
+      font-size: .88rem;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      margin: 0 0 .9rem;
+    }
+    .help-search {
+      width: 100%;
+      border-radius: .75rem;
+      border: 1px solid var(--aethika-border);
+      background: rgba(255,255,255,.06);
+      color: #fff;
+      padding: .75rem .85rem;
+      outline: none;
+      margin-bottom: .85rem;
+    }
+    .help-search::placeholder { color: var(--aethika-faint); }
+    .toc a {
+      display: block;
+      color: var(--aethika-muted);
+      text-decoration: none;
+      padding: .32rem 0;
+      line-height: 1.35;
+      font-size: .9rem;
+    }
+    .toc a:hover { color: var(--aethika-accent); }
+    .toc a.h2 { padding-left: .85rem; font-size: .86rem; }
+    .toc a.h3 { padding-left: 1.55rem; font-size: .82rem; color: var(--aethika-faint); }
+    .quick-links a {
+      display: inline-flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      gap: .75rem;
+      color: var(--aethika-text);
+      background: rgba(255,255,255,.05);
+      text-decoration: none;
+      border: 1px solid var(--aethika-border);
+      border-radius: .75rem;
+      padding: .75rem .8rem;
+      margin-bottom: .55rem;
+      font-weight: 700;
+      font-size: .88rem;
+    }
+    .quick-links a:hover { border-color: var(--aethika-accent); }
+    .version-note {
+      color: var(--aethika-faint);
+      font-size: .82rem;
+      line-height: 1.55;
+      margin: .85rem 0 0;
+    }
+
+    .help-content {
+      padding: 2rem;
+      overflow-x: hidden;
+    }
+    .content-panel {
+      max-width: 1140px;
+      background: var(--content-bg);
+      color: var(--content-text);
+      border-radius: 1.35rem;
+      padding: clamp(1.35rem, 4vw, 3rem);
+      box-shadow: 0 28px 90px rgba(0,0,0,.34);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .content-panel > section:first-child h1 { margin-top: 0; }
+    .eyebrow {
+      color: #0f766e;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: .76rem;
+      font-weight: 800;
+      margin-bottom: .9rem;
+    }
+    .content-panel h1, .content-panel h2, .content-panel h3, .content-panel h4 {
+      color: var(--content-heading);
+      text-align: left;
+      font-family: "Space Grotesk", Inter, sans-serif;
+      letter-spacing: -.025em;
+    }
+    .content-panel h1 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1;
+      margin: 0 0 1rem;
+    }
+    .lead {
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      line-height: 1.7;
+      color: #475569;
+      max-width: 950px;
+    }
+    .content-panel h2 {
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--content-border);
+      font-size: clamp(1.45rem, 2.5vw, 2.1rem);
+    }
+    .content-panel h3 {
+      margin-top: 1.6rem;
+      margin-bottom: .65rem;
+      font-size: 1.18rem;
+    }
+    .content-panel p, .content-panel li {
+      color: #475569;
+      line-height: 1.72;
+    }
+    .content-panel ul, .content-panel ol { padding-left: 1.25rem; }
+    .content-panel li { margin-bottom: .35rem; }
+    .content-panel a { color: #0f766e; font-weight: 700; }
+    .content-panel code {
+      background: #e2e8f0;
+      color: #0f172a;
+      padding: .16rem .35rem;
+      border-radius: .35rem;
+    }
+    .content-panel pre {
+      background: #0f172a;
+      color: #e8f0f8;
+      padding: 1rem;
+      border-radius: .85rem;
+      overflow-x: auto;
+    }
+    .content-panel table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0 1.75rem;
+      font-size: .95rem;
+    }
+    .content-panel th, .content-panel td {
+      border: 1px solid var(--content-border);
+      padding: .75rem;
+      vertical-align: top;
+    }
+    .content-panel th {
+      background: #eaf1f8;
+      color: var(--content-heading);
+    }
+    .note, .warning, .success {
+      border-radius: 1rem;
+      padding: 1rem 1.1rem;
+      margin: 1.2rem 0;
+      border: 1px solid var(--content-border);
+      background: #ffffff;
+    }
+    .note { border-left: 4px solid #0f766e; }
+    .warning { border-left: 4px solid #d8a31c; }
+    .success { border-left: 4px solid #42a87f; }
+    .grid-2, .grid-3 {
+      display: grid;
+      gap: 1rem;
+      margin: 1.25rem 0;
+    }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .mini-card {
+      background: #ffffff;
+      border: 1px solid var(--content-border);
+      border-radius: 1rem;
+      padding: 1rem;
+      height: 100%;
+    }
+    .mini-card h3 { margin-top: 0; }
+    .mini-card p:last-child, .note p:last-child, .warning p:last-child, .success p:last-child { margin-bottom: 0; }
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      padding-left: 0 !important;
+      list-style: none;
+    }
+    .pill-list li {
+      background: #eaf1f8;
+      color: #334155;
+      border: 1px solid var(--content-border);
+      border-radius: 999px;
+      padding: .38rem .7rem;
+      font-weight: 700;
+      font-size: .86rem;
+      margin: 0;
+    }
+    .footer-actions {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--content-border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: .8rem;
+      align-items: center;
+    }
+    .content-btn {
+      border-radius: 999px;
+      padding: .8rem 1.05rem;
+      text-decoration: none;
+      font-weight: 800;
+      background: #0f766e;
+      color: #fff !important;
+    }
+    .content-btn.secondary { background: transparent; color: #0f172a !important; border: 1px solid #0f172a; }
+    .back-to-top {
+      position: fixed;
+      right: 1.25rem;
+      bottom: 1.25rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--aethika-border);
+      background: rgba(8,24,38,.92);
+      color: #fff;
+      font-weight: 900;
+      cursor: pointer;
+      display: none;
+    }
+    .back-to-top.show { display: block; }
+
+    @media (max-width: 1000px) {
+      .help-shell { grid-template-columns: 1fr; }
+      .help-nav {
+        position: relative;
+        top: 0;
+        max-height: 360px;
+        border-right: none;
+        border-bottom: 1px solid var(--aethika-border);
+      }
+      .help-nav.hidden { display: none; }
+      .help-content { padding: 1rem; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .help-header { position: relative; }
+    }
+    @media (max-width: 640px) {
+      .help-header { align-items: flex-start; }
+      .brand { align-items: flex-start; }
+      .brand img { width: 96px; }
+      .header-actions { width: 100%; justify-content: flex-start; }
+      .btn-aethika, .btn-ghost { width: 100%; text-align: center; }
+      .content-panel table { font-size: .86rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="help-header">
+    <div class="brand">
+      <img src="assets/img/aethika-logo.png" alt="Aethika" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+      <div class="brand-mark-fallback" style="display:none;">AETHIKA</div>
+      <div class="help-title">
+        <h1>Governance Effectiveness Diagnostic Workbench</h1>
+        <p>Help &amp; User Guide</p>
+      </div>
+    </div>
+    <div class="header-actions">
+            <button class="btn-ghost" type="button" onclick="toggleContents()">Show / Hide Contents</button>
+    </div>
+  </header>
+
+  <div id="helpShell" class="help-shell">
+    <aside id="tocPane" class="help-nav" aria-label="Help contents">
+      <div class="nav-card">
+        <h2>Find in guide</h2>
+        <input id="searchInput" class="help-search" type="search" placeholder="Search help topics" aria-label="Search help topics">
+        <div class="quick-links">
+          <a href="#quick-start">Quick start <span>→</span></a>
+          <a href="#pre-assessment">Pre-Assessment <span>→</span></a>
+          <a href="#diagnostic">Diagnostic <span>→</span></a>
+          <a href="#reports">Reports <span>→</span></a>
+        </div>
+        <p class="version-note">Guide aligned to GEDiagnosticWorkbench configuration version 1.14. Internal config domains may still use technical names, but the user-facing product uses Pre-Assessment and Diagnostic.</p>
+      </div>
+      <div class="nav-card">
+        <h2>Contents</h2>
+        <nav id="toc" class="toc"></nav>
+      </div>
+    </aside>
+
+    <main class="help-content">
+      <article id="content" class="content-panel">
+        <section id="overview" data-search="overview governance effectiveness diagnostic workbench aethika outcomes ethics ai business operating model">
+          <div class="eyebrow">Help guide</div>
+          <h1>Using the Governance Effectiveness Diagnostic Workbench</h1>
+          <p class="lead">The Governance Effectiveness Diagnostic Workbench helps boards, executives and governance practitioners assess whether governance and ethics are operating as a decision-useful, coherent and accountable system across the Business Operating Model.</p>
+          <p>The Workbench is designed around an outcomes-first diagnostic approach. It does not start by asking whether every practice, standard or policy exists. It asks whether governance is actually helping the organisation make better decisions, preserve accountability, operate ethically, create sustainable value and maintain legitimacy.</p>
+          <div class="note">
+            <p><strong>Interpretation boundary:</strong> The Workbench is a diagnostic and decision-support tool. It is not a certification, assurance product, legal opinion, compliance assessment, or official interpretation of any governance code or responsible business framework.</p>
+          </div>
+        </section>
+
+        <section id="quick-start" data-search="quick start launch workflow pre assessment diagnostic export report licence">
+          <h2>Quick start</h2>
+          <ol>
+            <li><strong>Open the Workbench.</strong> Review the overview, terms, privacy notice and known limitations.</li>
+            <li><strong>Complete the Pre-Assessment.</strong> Use either Guided View or Table View to respond to the 30 executive indicators.</li>
+            <li><strong>Review Results.</strong> Interpret the five-lens heatmap, primary attention lens, Governance Effectiveness Model and recommended diagnostic pathway.</li>
+            <li><strong>Export the Pre-Assessment Report.</strong> Use the report as a discussion artefact, not as a certification or final conclusion.</li>
+            <li><strong>Move into the Diagnostic where appropriate.</strong> The Diagnostic examines the indicators triggered by weak pre-assessment responses and turns them into issue patterns, observations and recommendations.</li>
+          </ol>
+          <div class="warning">
+            <p><strong>Before sharing reports:</strong> Review them for sensitive governance, legal, stakeholder, human rights, AI, board or assurance information. The Workbench runs locally, but exported reports are files that users control.</p>
+          </div>
+        </section>
+
+        <section id="core-concepts" data-search="concepts five lenses proportionality line of sight value realisation decision velocity accountability ai overlay ethics governance coherence decision confidence">
+          <h2>Core concepts</h2>
+          <h3>The five diagnostic lenses</h3>
+          <p>The Workbench assesses governance effectiveness through five lenses. Each lens looks for outcome signals rather than standards coverage alone.</p>
+          <div class="grid-2">
+            <div class="mini-card"><h3>1 — Proportionality</h3><p>Whether governance effort is proportionate, coordinated and decision-useful, or whether governance burden is absorbed through duplication, fragmentation, unclear ownership and low decision value.</p></div>
+            <div class="mini-card"><h3>2 — Line of Sight</h3><p>Whether purpose, strategy, obligations, risks, controls, decisions, AI influence, stakeholder impacts, outcomes, escalation and remedy can be traced across the Business Operating Model.</p></div>
+            <div class="mini-card"><h3>3 — Value Realisation</h3><p>Whether governance creates, preserves and protects value without eroding ethical conduct, human dignity, stakeholder trust or organisational legitimacy.</p></div>
+            <div class="mini-card"><h3>4 — Decision Velocity</h3><p>Whether the right decisions can move at the right pace without bypassing ethical judgement, stakeholder consideration, risk thresholds, escalation or accountability.</p></div>
+            <div class="mini-card"><h3>5 — Accountability</h3><p>Whether decisions, delegations, controls, stakeholder trade-offs, adverse impacts, remedy pathways and AI-influenced outcomes can be explained, owned, challenged, assured and improved.</p></div>
+          </div>
+
+          <h3>AI as a cross-cutting overlay</h3>
+          <p>AI is not treated as a narrow technology topic. It is a whole-of-governance operating condition because AI can change authority, accountability, judgement, explainability, stakeholder impact, risk propagation, assurance and remedy.</p>
+          <ul>
+            <li><strong>Authority:</strong> AI can influence who or what effectively makes a decision.</li>
+            <li><strong>Accountability:</strong> human ownership must remain clear when AI informs, recommends, automates or constrains action.</li>
+            <li><strong>Explainability and contestability:</strong> affected parties and accountable decision-makers may need to understand, challenge or override outcomes.</li>
+            <li><strong>Stakeholder impact:</strong> AI can scale consequences across customers, workers, communities, suppliers and other affected groups.</li>
+          </ul>
+
+          <h3>Governance Effectiveness Model</h3>
+          <p>The results screen positions the assessment on the Governance Effectiveness Model using two axes:</p>
+          <table>
+            <thead><tr><th>Axis</th><th>Built from</th><th>What it means</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Governance Coherence</strong></td><td>Line of Sight + Accountability</td><td>Whether governance can be traced, explained, owned and improved across the Business Operating Model.</td></tr>
+              <tr><td><strong>Decision Confidence</strong></td><td>Proportionality + Value Realisation + Decision Velocity</td><td>Whether governance enables timely, informed, ethical and accountable decisions.</td></tr>
+            </tbody>
+          </table>
+          <p>The quadrants are <strong>Governance Drag</strong>, <strong>Controlled but Slow</strong>, <strong>Fast but Exposed</strong> and <strong>Governed Performance</strong>. The model is directional and should be validated through discussion, evidence review and, where appropriate, a more detailed diagnostic.</p>
+        </section>
+
+        <section id="pre-assessment" data-search="pre assessment pre-assessment guided view table view response guidance lens heatmap primary attention lens secondary attention lens trigger below neutral">
+          <h2>Pre-Assessment</h2>
+          <p>The Pre-Assessment is an executive-level signal scan. It consists of 30 positively framed indicators across the five lenses. It is intended to identify where governance and ethics appear strong, mixed or weak enough to justify deeper diagnostic work.</p>
+
+          <h3>Views</h3>
+          <div class="grid-2">
+            <div class="mini-card"><h3>Guided View</h3><p>Moves through the indicators one at a time. Use this mode for facilitated discussions, board workshops or executive interviews.</p></div>
+            <div class="mini-card"><h3>Table View</h3><p>Shows all indicators in a rapid completion format. Use this mode when entering responses quickly or reviewing a completed response set.</p></div>
+          </div>
+
+          <h3>Pre-Assessment response scale</h3>
+          <p>The Pre-Assessment is positively framed. Higher scores mean stronger governance and ethics effectiveness.</p>
+          <table>
+            <thead><tr><th>Response</th><th>Score</th><th>Interpretation</th></tr></thead>
+            <tbody>
+              <tr><td><strong>SD</strong></td><td>0</td><td>Not visible, not addressed, or ineffective.</td></tr>
+              <tr><td><strong>D</strong></td><td>1</td><td>Weak, informal, or person-dependent.</td></tr>
+              <tr><td><strong>N</strong></td><td>2</td><td>Partially present, inconsistent, or difficult to determine.</td></tr>
+              <tr><td><strong>A</strong></td><td>3</td><td>Generally effective and operationally meaningful.</td></tr>
+              <tr><td><strong>SA</strong></td><td>4</td><td>Integrated, adaptive, and decision-useful.</td></tr>
+            </tbody>
+          </table>
+          <div class="note">
+            <p><strong>Trigger rule:</strong> Indicators scored below Neutral, meaning SD or D, are selected for diagnostic review. Neutral responses do not trigger the Diagnostic by default.</p>
+          </div>
+
+          <h3>Interpreting Pre-Assessment results</h3>
+          <ul>
+            <li><strong>Five-lens heatmap:</strong> shows the relative signal profile across the five lenses.</li>
+            <li><strong>Primary Attention Lens:</strong> the weakest lens based on numeric score.</li>
+            <li><strong>Secondary Attention Lens:</strong> the next distinct lowest-scoring lens, or multiple secondary lenses where there is a tie.</li>
+            <li><strong>Governance Effectiveness Model:</strong> plots Governance Coherence and Decision Confidence.</li>
+            <li><strong>Recommended pathway:</strong> suggests where the Diagnostic should focus first.</li>
+          </ul>
+        </section>
+
+        <section id="diagnostic" data-search="diagnostic issue framed full diagnostic issue severity structural pattern recommendations assessment statements">
+          <h2>Diagnostic</h2>
+          <p>The Diagnostic is a deeper, issue-focused assessment of selected indicators. It is usually generated from the pre-assessment indicators that scored below Neutral, but access and scope may depend on the active licence and configuration.</p>
+          <p>Unlike the Pre-Assessment, the Diagnostic is issue-framed. Its statements describe observable gaps, delays, burdens, weaknesses, disconnects or failure patterns.</p>
+
+          <h3>Diagnostic response scale</h3>
+          <p>In the Diagnostic, higher scores mean stronger evidence that the issue is present or persistent. Do not interpret a high Diagnostic score as a strong governance condition.</p>
+          <table>
+            <thead><tr><th>Response</th><th>Score</th><th>Interpretation</th></tr></thead>
+            <tbody>
+              <tr><td><strong>SD</strong></td><td>0</td><td>Low issue signal or issue not observed.</td></tr>
+              <tr><td><strong>D</strong></td><td>1</td><td>Limited or emerging issue signal.</td></tr>
+              <tr><td><strong>N</strong></td><td>2</td><td>Mixed, unclear or inconsistent issue signal.</td></tr>
+              <tr><td><strong>A</strong></td><td>3</td><td>Operationally meaningful issue signal.</td></tr>
+              <tr><td><strong>SA</strong></td><td>4</td><td>Structural or persistent issue signal.</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Diagnostic statements</h3>
+          <p>Each diagnostic indicator is typically assessed through three statements:</p>
+          <ul>
+            <li><strong>Presence:</strong> whether the issue is visible.</li>
+            <li><strong>Persistence:</strong> whether the issue recurs or persists across contexts.</li>
+            <li><strong>Dependency:</strong> whether the organisation depends on workarounds, manual intervention or compensating activity.</li>
+          </ul>
+
+          <h3>Patterns and recommendations</h3>
+          <p>The Diagnostic uses pattern logic to identify recurring conditions across indicators. Patterns should be interpreted as structured prompts for further evidence review, not as final findings. Recommendations should be reviewed in light of organisational context, risk appetite, legal obligations, stakeholder expectations and available capability.</p>
+        </section>
+
+        <section id="reports" data-search="reports pdf export pre-assessment report diagnostic report privacy local files interpretation boundary">
+          <h2>Reports and exports</h2>
+          <h3>Pre-Assessment Report</h3>
+          <p>The Executive Pre-Assessment Report summarises the directional signal across the five lenses, identifies the primary attention lens, shows the Governance Effectiveness Model and recommends a next diagnostic pathway.</p>
+
+          <h3>Diagnostic Report</h3>
+          <p>The Diagnostic Report summarises issue signals, triggered patterns, recommendations, proof metrics and interpretation boundaries. It should be used to support discussion, scoping and prioritisation.</p>
+
+          <h3>Privacy and export handling</h3>
+          <p>The Workbench runs locally. Responses are not uploaded, shared or transmitted by the application. However, exported PDF reports are files controlled by the user. Treat them as sensitive governance artefacts.</p>
+          <ul>
+            <li>Review exported reports before sharing.</li>
+            <li>Avoid entering confidential board deliberations, legal privilege material, whistleblower information or personal data unless authorised.</li>
+            <li>Store reports according to your organisation’s records, privacy and information security policies.</li>
+          </ul>
+        </section>
+
+        <section id="licensing" data-search="license licence activation diagnostic access dwlic GEDiagnosticWorkbench.dwlic configuration package dwconfig">
+          <h2>Licence and configuration</h2>
+          <p>The Workbench uses a packaged configuration file and a separate licence file for controlled access to functionality.</p>
+          <table>
+            <thead><tr><th>Item</th><th>Expected name</th><th>Purpose</th></tr></thead>
+            <tbody>
+              <tr><td>Configuration package</td><td><code>GEDiagnosticWorkbench.dwconfig</code></td><td>Contains the app metadata, pre-assessment and diagnostic configuration.</td></tr>
+              <tr><td>Licence file</td><td><code>GEDiagnosticWorkbench.dwlic</code></td><td>Activates licensed functionality such as Diagnostic access where applicable.</td></tr>
+            </tbody>
+          </table>
+          <p>If Diagnostic access is unavailable, check whether the correct licence file is installed and whether it has expired or is valid for the current machine and edition.</p>
+        </section>
+
+        <section id="troubleshooting" data-search="troubleshooting stale state config version checksum table view report not updating neutral centre old config cache">
+          <h2>Troubleshooting</h2>
+          <h3>The app is showing old lens names or old wording</h3>
+          <p>Confirm that the app is loading the latest packaged configuration. If a previously imported configuration is active, switch to the packaged configuration or import the latest <code>GEDiagnosticWorkbench.dwconfig</code>.</p>
+
+          <h3>Results do not match the workbook</h3>
+          <p>Check whether saved state was created under an older configuration version. If the active configuration version or checksum has changed, old responses may need to be reset. The Workbench should not silently reuse stale responses against an incompatible configuration.</p>
+
+          <h3>No diagnostic indicators are triggered</h3>
+          <p>In the Pre-Assessment, only responses below Neutral trigger Diagnostic scope by default. If all responses are N, A or SA, no Diagnostic indicators are triggered unless the configuration defines a different rule.</p>
+
+          <h3>The 2x2 dot looks wrong</h3>
+          <p>All Neutral responses should place the dot at the centre intersection: Governance Coherence 50% and Decision Confidence 50%. If this is not happening, confirm that the latest configuration is loaded and that no stale state is being reused.</p>
+
+          <h3>PDF export contains old labels</h3>
+          <p>Legacy lens, axis or prior-methodology terminology indicates stale configuration or outdated application code. Regenerate the configuration from the current workbooks and reload the app in packaged configuration mode.</p>
+        </section>
+
+        <section id="glossary" data-search="glossary governance coherence decision confidence proportionality diagnostic pre-assessment issue signal business operating model">
+          <h2>Glossary</h2>
+          <table>
+            <thead><tr><th>Term</th><th>Meaning in the Workbench</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Business Operating Model</strong></td><td>The practical structure through which governance connects to capabilities, decisions, roles, controls, workflows, data, systems, stakeholders and outcomes.</td></tr>
+              <tr><td><strong>Decision Confidence</strong></td><td>Whether governance enables timely, informed, ethical and accountable decisions.</td></tr>
+              <tr><td><strong>Governance Coherence</strong></td><td>Whether governance can be traced, explained, owned and improved across the Business Operating Model.</td></tr>
+              <tr><td><strong>Pre-Assessment</strong></td><td>A positively framed executive signal scan of governance and ethics effectiveness.</td></tr>
+              <tr><td><strong>Diagnostic</strong></td><td>An issue-framed deeper assessment of selected indicators, patterns, recommendations and evidence areas.</td></tr>
+              <tr><td><strong>Primary Attention Lens</strong></td><td>The weakest lens based on numeric pre-assessment score.</td></tr>
+              <tr><td><strong>Issue signal</strong></td><td>In the Diagnostic, evidence that a governance gap, burden, delay, disconnect or failure pattern is present.</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="support" data-search="support contact aethika help email">
+          <h2>Support</h2>
+          <p>For support, licensing queries, configuration questions or feedback, contact Aethika.</p>
+          <div class="footer-actions">
+            <a class="content-btn" href="mailto:aethika@lxndigital.com?subject=GEDiagnosticWorkbench%20Support">Contact support</a>
+          </div>
+        </section>
+      </article>
+    </main>
+  </div>
+
+  <button id="backToTop" class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+  <script>
+    function toggleContents() {
+      document.getElementById('tocPane').classList.toggle('hidden');
+      document.getElementById('helpShell').classList.toggle('nav-hidden');
+    }
+
+    function slugify(text) {
+      return text.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    }
+
+    function buildToc() {
+      const content = document.getElementById('content');
+      const toc = document.getElementById('toc');
+      const headings = content.querySelectorAll('h1, h2, h3');
+      const used = new Set();
+      headings.forEach((heading) => {
+        if (!heading.id) {
+          let id = slugify(heading.textContent);
+          let base = id;
+          let counter = 2;
+          while (used.has(id)) { id = `${base}-${counter++}`; }
+          heading.id = id;
+        }
+        used.add(heading.id);
+        const a = document.createElement('a');
+        a.href = `#${heading.id}`;
+        a.textContent = heading.textContent;
+        a.className = heading.tagName.toLowerCase();
+        toc.appendChild(a);
+      });
+    }
+
+    function setupSearch() {
+      const input = document.getElementById('searchInput');
+      const sections = Array.from(document.querySelectorAll('#content > section'));
+      input.addEventListener('input', () => {
+        const q = input.value.toLowerCase().trim();
+        sections.forEach(section => {
+          if (!q) { section.style.display = ''; return; }
+          const haystack = (section.textContent + ' ' + (section.dataset.search || '')).toLowerCase();
+          section.style.display = haystack.includes(q) ? '' : 'none';
+        });
+      });
+    }
+
+    function setupBackToTop() {
+      const btn = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => {
+        btn.classList.toggle('show', window.scrollY > 600);
+      });
+    }
+
+    buildToc();
+    setupSearch();
+    setupBackToTop();
+  </script>
+</body>
+</html>
