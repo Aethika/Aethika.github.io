@@ -1,0 +1,3026 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2K97YS6ZMQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2K97YS6ZMQ');
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aethika | Innovation Fitness Register</title>
+  <meta name="description" content="An evidence-based register of real-world AI deployments evaluated using the Innovation Fitness Scorecard rather than market sentiment.">
+  <meta name="robots" content="noindex"> <!-- remove when ready to index -->
+  <meta name="theme-color" content="#081826">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Serif:ital,wght@0,500;0,600;1,500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="assets/css/aethika.css" rel="stylesheet">
+  <style>
+    :root {
+      --aethika-ink: #eaf6f7;
+      --aethika-muted: rgba(234, 246, 247, .68);
+      --aethika-panel: rgba(8, 24, 38, .72);
+      --aethika-line: rgba(118, 248, 214, .16);
+      --aethika-accent: #76f8d6;
+      --aethika-accent-2: #7aa2ff;
+      --aethika-deep: #05111d;
+    }
+
+    body {
+      background: radial-gradient(900px 380px at 12% 0%, rgba(118, 248, 214, .08), transparent),
+                  radial-gradient(800px 420px at 88% 0%, rgba(122, 162, 255, .10), transparent),
+                  var(--aethika-deep);
+      color: var(--aethika-ink);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .register-hero { min-height: 72vh; padding-top: 7rem; }
+    .register-hero .hero-lead { max-width: 840px; }
+    .register-panel { border: 1px solid var(--aethika-line); border-radius: 1.5rem; background: rgba(8, 24, 38, .68); box-shadow: 0 24px 80px rgba(0, 0, 0, .25); backdrop-filter: blur(18px); }
+    .register-kpi { padding: 1rem; border: 1px solid rgba(255,255,255,.08); border-radius: 1rem; background: rgba(255,255,255,.035); }
+    .register-kpi span { display:block; color: var(--aethika-muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; }
+    .register-kpi strong { display:block; font-family: "Space Grotesk", Inter, sans-serif; font-size: 1.45rem; line-height: 1.1; color: #fff; }
+
+    .card-elevate,
+    .register-card {
+      border: 1px solid var(--aethika-line) !important;
+      border-radius: 1.35rem !important;
+      background: var(--aethika-panel) !important;
+      box-shadow: 0 22px 60px rgba(0, 0, 0, .22);
+      backdrop-filter: blur(16px);
+    }
+    .card-title { font-family: "Space Grotesk", Inter, sans-serif; letter-spacing: -.01em; }
+    .text-white-50 { color: var(--aethika-muted) !important; }
+    .section-padding { padding: 5rem 0; }
+    .soft-section { background: linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.015)); border-top: 1px solid rgba(255,255,255,.06); border-bottom: 1px solid rgba(255,255,255,.06); }
+
+    .table-sticky-wrap {
+      max-height: 74vh;
+      overflow: auto;
+      scrollbar-gutter: stable both-edges;
+      border: 1px solid rgba(118,248,214,.16);
+      border-radius: 1.15rem;
+      background: rgba(3, 10, 18, .46);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+    }
+    #scoreTable {
+      --bs-table-bg: transparent;
+      --bs-table-striped-bg: rgba(255,255,255,.026);
+      --bs-table-hover-bg: rgba(118,248,214,.07);
+      margin-bottom: 0;
+      font-size: .86rem;
+      line-height: 1.38;
+    }
+    #scoreTable thead th {
+      position: sticky;
+      top: 0;
+      background: linear-gradient(180deg, #092033, #071723);
+      color: #dffdf5;
+      z-index: 2;
+      border-bottom: 1px solid rgba(118,248,214,.22);
+      font-size: .69rem;
+      letter-spacing: .055em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      padding: .85rem .75rem;
+    }
+    #scoreTable td, #scoreTable th {
+      border-color: rgba(255,255,255,.075);
+    }
+    #scoreTable tbody td {
+      padding: .78rem .75rem;
+      color: rgba(234,246,247,.84);
+      vertical-align: middle;
+    }
+    #scoreTable tbody tr.group-head td {
+      background: rgba(255,255,255,.035);
+    }
+    #scoreTable tbody tr.group-body td {
+      background: rgba(255,255,255,.012);
+    }
+    #scoreTable tbody tr:hover td {
+      color: #fff;
+    }
+    .group-sep td {
+      border-top: 2px solid rgba(118,248,214,.30)!important;
+    }
+    .merged {
+      vertical-align: middle;
+      font-weight: 600;
+      color: #fff !important;
+    }
+    .truncate {
+      max-width: 260px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .cell-usecase {
+      min-width: 210px;
+      max-width: 280px;
+    }
+    .cell-one-number {
+      min-width: 230px;
+      max-width: 320px;
+      color: #fff !important;
+      font-weight: 500;
+    }
+    .cell-commentary {
+      min-width: 320px;
+      max-width: 460px;
+      color: rgba(234,246,247,.72) !important;
+    }
+    .cell-proof {
+      min-width: 220px;
+      max-width: 300px;
+      color: rgba(234,246,247,.72) !important;
+    }
+    .index-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 3.2rem;
+      padding: .25rem .55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(118,248,214,.22);
+      background: rgba(118,248,214,.10);
+      color: #dffdf5;
+      font-weight: 700;
+      font-size: .73rem;
+      letter-spacing: .04em;
+    }
+    .score-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 999px;
+      font-weight: 800;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: #fff;
+    }
+    .score-5 { background: rgba(118,248,214,.18); border-color: rgba(118,248,214,.34); color: #dffdf5; }
+    .score-4 { background: rgba(122,162,255,.18); border-color: rgba(122,162,255,.34); color: #e6edff; }
+    .score-3 { background: rgba(253,230,138,.16); border-color: rgba(253,230,138,.30); color: #fff3bf; }
+    .score-2, .score-1 { background: rgba(252,165,165,.16); border-color: rgba(252,165,165,.30); color: #ffdada; }
+    .source-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      padding: .28rem .55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(118,248,214,.30);
+      background: rgba(118,248,214,.08);
+      color: var(--aethika-accent);
+      text-decoration: none;
+      white-space: nowrap;
+      font-weight: 600;
+      font-size: .78rem;
+    }
+    .source-link:hover {
+      background: rgba(118,248,214,.16);
+      color: #fff;
+    }
+    .diag { white-space: pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+    .filters .form-select, .filters .btn { min-width: 190px; }
+    .form-select { background-color: rgba(255,255,255,.04); border-color: rgba(118,248,214,.18); color: #fff; }
+    .form-select:focus { border-color: var(--aethika-accent); box-shadow: 0 0 0 .2rem rgba(118,248,214,.12); }
+    .btn-outline-aethika, .btn-outline-light { border-color: rgba(118,248,214,.45) !important; color: var(--aethika-accent) !important; }
+    .btn-outline-aethika:hover, .btn-outline-light:hover { background: rgba(118,248,214,.14) !important; color: #fff !important; }
+
+    .accordion-item { background: transparent !important; border-color: rgba(255,255,255,.10) !important; }
+    .accordion-button { background: rgba(255,255,255,.035) !important; color: #fff !important; box-shadow: none !important; }
+    .accordion-button:not(.collapsed) { background: rgba(118,248,214,.08) !important; }
+    .badge.bg-secondary { background-color: rgba(118,248,214,.12) !important; color: #dffdf5; border: 1px solid rgba(118,248,214,.18); }
+
+    a { color: var(--aethika-accent); }
+    a:hover { color: #fff; }
+    .footer a { margin-left: 1.2rem; color: var(--aethika-muted); text-decoration: none; }
+    .footer a:hover { color: #fff; }
+
+    @media (max-width: 767.98px) {
+      .register-hero { min-height: auto; padding-top: 6rem; padding-bottom: 4rem; }
+      .section-padding { padding: 3.5rem 0; }
+      .filters .form-select, .filters .btn { min-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg fixed-top aethika-nav" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-3" href="index.html#top" aria-label="Aethika home">
+        <img src="assets/img/aethika-logo.png" alt="Aethika" class="brand-logo">
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="mainNav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+          <li class="nav-item"><a class="nav-link" href="index.html#thesis">Thesis</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#model">Model</a></li>
+          <li class="nav-item"><a class="nav-link" href="governance-effectiveness-diagnostic.html">Diagnostic</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="ifs.html">Innovation Fitness Register</a></li>
+          <li class="nav-item"><a class="nav-link" href="insights.html">Insights</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+          <li class="nav-item"><a class="btn btn-aethika btn-sm" href="mailto:aethika@lxndigital.com">Start a conversation</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header id="top" class="hero-section register-hero position-relative overflow-hidden">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="signal-orbit orbit-one" aria-hidden="true"></div>
+    <div class="signal-orbit orbit-two" aria-hidden="true"></div>
+    <div class="container position-relative">
+      <div class="row align-items-center g-5 py-5">
+        <div class="col-lg-8 col-xl-7 pt-5">
+          <div class="eyebrow mb-4">Evidence-based AI adoption</div>
+          <h1 class="display-2 hero-title mb-4">Innovation should be judged by evidence, not infatuation.</h1>
+          <p class="lead hero-lead mb-5">The Innovation Fitness Register is Aethika’s experimental public evidence register of real-world AI deployments scored for readiness, adoption, impact, and economic viability.</p>
+          <div class="d-flex flex-column flex-sm-row gap-3">
+            <a href="#register" class="btn btn-aethika btn-lg">Explore the register</a>
+            <a href="#infatuation-curve" class="btn btn-outline-aethika btn-lg">Why the Hype Cycle fails</a>
+          </div>
+        </div>
+        <div class="col-lg-4 d-none d-lg-block">
+          <div class="register-panel p-4 ms-xl-4">
+            <div class="console-header d-flex justify-content-between align-items-center mb-4">
+              <span>Innovation fitness</span>
+              <span class="live-dot">Evidence-led</span>
+            </div>
+            <div class="row g-3">
+              <div class="col-6"><div class="register-kpi"><span>TRI</span><strong>Readiness</strong></div></div>
+              <div class="col-6"><div class="register-kpi"><span>AVI</span><strong>Adoption</strong></div></div>
+              <div class="col-6"><div class="register-kpi"><span>II</span><strong>Impact</strong></div></div>
+              <div class="col-6"><div class="register-kpi"><span>EVI</span><strong>Viability</strong></div></div>
+            </div>
+            <p class="text-white-50 small mb-0 mt-4">A practical alternative to sentiment-led technology curves.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="container my-4">
+      <div id="topNotice" class="alert alert-warning border-0 d-none" role="alert"></div>
+    </section>
+
+    <!-- Infatuation Curve thesis -->
+    <section id="infatuation-curve" class="section-padding">
+      <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-12">
+          <div class="card card-elevate register-card text-white">
+            <div class="card-body">
+              <h5 class="card-title">Thesis: The Hype Cycle Doesn’t Chart Technology Maturity — It Charts Our Infatuation Curve</h5>
+              <p class="card-text text-white-50">We like to think of the Hype Cycle as a tidy chart of innovation maturity. In reality, 
+                it is closer to a mirror. It reflects our emotional swings around new technology rather than the actual capability, 
+                readiness or value of the technology itself. <br><br>
+                By drawing a familiar rise, crash and recovery pattern, it does more than describe market psychology. It can start to 
+                script it. Organisations rush in when novelty is dazzling, pull back when disappointment sets in, and then wait for 
+                permission to re-engage once the curve says the technology has become safe. The result is predictable: inflated bubbles, 
+                abandoned breakthroughs and a decision environment where sentiment can outrun evidence. <br><br>
+                The problem becomes more serious when a technology’s position on the curve starts influencing capital allocation, 
+                executive attention and adoption timing. A premature “Peak of Inflated Expectations” can send investment stampeding 
+                towards weak use cases. A “Trough of Disillusionment” can stall promising work just when disciplined experimentation 
+                is needed. By the time the model signals that it is safe to re-engage, the need may have changed, the opportunity may 
+                have moved, or a competitor may already have converted the technology into advantage.<br><br>
+                The Hype Cycle can also shape behaviour at both ends of the adoption curve. For the late majority, it offers comfort 
+                and a reason to wait. A “Trough” label can make delay feel like prudence, turning inaction into a socially validated 
+                strategy. For early adopters, it can create hesitation. A “Peak” can make them look like hype-chasers, while a “Trough” 
+                can make even capable innovators pause. In both cases, the chart does not simply reflect sentiment. It can influence 
+                when action feels acceptable. <br><br>
+                Strip away the technology language and the curve starts to look like an Infatuation Curve. It is the same emotional 
+                arc we recognise in a new romance, a dream job or the hobby we were convinced would change our life. First comes 
+                fascination. Then disappointment. Then rationalisation. The curve may be useful as a study of mood, but it should 
+                not be mistaken for a reliable assessment of capability. <br><br>
+                That is why organisations need a better basis for innovation decisions. The Innovation Fitness Scorecard offers an 
+                alternative. It evaluates real-world deployments through evidence of readiness, adoption, impact and economic viability. 
+                It asks whether the technology is working, where it is being used, what value it is delivering and whether it can scale. <br><br>
+                The future should not be dictated by market mood swings or by the comfort of waiting for someone else to move first. 
+                It should be shaped by evidence, judgement and the disciplined assessment of what is actually fit for use.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      </div>
+    </section>
+
+    <!-- Innovation Fitness Scorecard summary -->
+    <section class="section-padding soft-section">
+      <div class="container">
+        <div class="row align-items-end mb-5">
+          <div class="col-lg-8">
+            <div class="eyebrow">The alternative</div>
+            <h2 class="section-title">Innovation Fitness Scorecard.</h2>
+          </div>
+          <div class="col-lg-4">
+            <p class="section-intro mb-0">A transparent way to compare real AI deployments by operational evidence rather than market mood.</p>
+          </div>
+        </div>
+        <div class="row g-4" id="summaryCards"></div>
+      </div>
+    </section>
+
+    <!-- Scorecard Table -->
+    <section id="register" class="section-padding">
+      <div class="container">
+      <div class="card card-elevate register-card text-white">
+        <div class="card-body">
+          <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
+            <div>
+              <h5 class="card-title mb-1">Innovation Fitness Register</h5>
+              <small id="datasetMeta" class="text-white-50">Loading dataset…</small>
+            </div>
+             <div class="filters d-flex gap-2 flex-column flex-sm-row align-items-start align-items-sm-center">
+              <select class="form-select form-select-sm" style="width:auto" id="innovationFilter" aria-label="Filter by innovation"></select>
+              <select class="form-select form-select-sm" style="width:auto" id="sectorFilter" aria-label="Filter by sector"></select>
+              <select class="form-select form-select-sm" style="width:auto" id="capabilityFilter" aria-label="Filter by business capability"></select>
+              <select class="form-select form-select-sm" style="width:auto" id="indexFilter" aria-label="Filter by index"></select>
+              <button class="btn btn-outline-aethika btn-sm" style="width:auto" id="downloadBtn"><i class="bi bi-download me-1"></i>Download visible CSV</button>
+            </div>
+          </div>
+
+          <div class="table-responsive table-sticky-wrap">
+            <table class="table table-dark table-hover table-striped align-middle" id="scoreTable">
+            <thead>
+              <tr>
+                <th>Innovation</th>
+                <th>Sector</th>
+                <th>Organisation</th>
+                <th>Product</th>
+                <th>Use Case</th>
+                <th>Index</th>
+                <th>Rating (1–5)</th>
+                <th>One Number to Check</th>
+                <th>Commentary</th>
+                <th>Proof Artefact</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+
+    
+    
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div class="d-flex justify-content-between text-white-50 small">
+            <div>Tip: combine filters to focus your view. Click “Source” to open the evidence in a new tab.</div>
+            <div id="rowCount"></div>
+          </div>
+          <div id="diagnostics" class="diag text-white-50 small mt-3 d-none"></div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <section class="section-padding soft-section">
+      <div class="container">
+  <div class="row g-4 align-items-stretch">
+    <!-- gi -->
+    <div class="col-12 col-lg-6">
+      <div class="card card-elevate register-card text-white h-100">
+        <div class="card-body">
+          <h5 class="card-title">Scoring Guidance</h5>
+          <div class="small text-white-50 mb-2">Tap to view each index’s rubric (scoring 1-5). If any index scores 1, do not scale—address that gap first.</div>
+
+          <div class="accordion accordion-flush" id="guidanceAccordion">
+            <!-- TRI -->
+            <div class="accordion-item bg-dark text-white border-secondary">
+              <h2 class="accordion-header" id="triHead">
+                <button class="accordion-button collapsed bg-dark text-white py-3 d-flex flex-column flex-sm-row align-items-center align-items-sm-start"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#triBody" aria-expanded="false" aria-controls="triBody">
+                  <!-- Left column: title -->
+                  <span class="text-white me-sm-3 flex-grow-1 w-100 w-sm-auto mx-auto mx-sm-0 text-center text-sm-start text-wrap text-break">
+                    Technology Readiness Index (TRI)
+                  </span>
+                  <!-- Right column: badges stacked vertically -->
+                   <span class="d-flex flex-column align-items-center align-items-sm-end ms-sm-2 mt-2 mt-sm-0 w-100 w-sm-auto mx-auto mx-sm-0 gap-2">
+                      <span class="badge bg-secondary w-100 w-sm-auto text-center text-break">One number: % targets met (90d)</span>
+                      <span class="badge bg-secondary w-100 w-sm-auto text-center text-break">Proof: ops snapshot
+                    </span>
+                  </span>
+                  </button>
+              </h2>
+              <div id="triBody" class="accordion-collapse collapse" aria-labelledby="triHead" data-bs-parent="#guidanceAccordion">
+                <div class="accordion-body pt-2">
+                  <ol class="mb-0 ps-3">
+                    <li>Not live or fewer than 50% of reliability targets met.</li>
+                    <li>50–69% of targets met (pilot or staging only).</li>
+                    <li>70–84% of targets met (one live site or a strong pilot).</li>
+                    <li>85–94% of targets met across two or more live customers.</li>
+                    <li>95% or more of targets met across two or more live customers.</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+
+            <!-- AVI -->
+            <div class="accordion-item bg-dark text-white border-secondary">
+              <h2 class="accordion-header" id="aviHead">
+                <button class="accordion-button collapsed bg-dark text-white py-3 d-flex flex-column flex-sm-row align-items-center align-items-sm-start"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#aviBody" aria-expanded="false" aria-controls="aviBody">
+                  <!-- Left column: title -->
+                  <span class="text-white me-sm-3 flex-grow-1 w-100 w-sm-auto mx-auto mx-sm-0 text-center text-sm-start text-wrap text-break">
+                    Adoption Velocity Index (AVI)
+                  </span>
+                  <!-- Right column: badges stacked vertically -->
+                    <span class="d-flex flex-column align-items-center align-items-sm-end ms-sm-2 mt-2 mt-sm-0 w-100 w-sm-auto mx-auto mx-sm-0 gap-2">
+                      <span class="badge bg-secondary w-100 w-sm-auto text-center text-break">One number: QoQ growth</span>
+                      <span class="badge bg-secondary w-100 w-sm-auto text-center text-break">Proof: billing/usage export
+                    </span>
+                  </span>
+                  </button>
+              </h2>
+              <div id="aviBody" class="accordion-collapse collapse" aria-labelledby="aviHead" data-bs-parent="#guidanceAccordion">
+                <div class="accordion-body pt-2">
+                  <ol class="mb-0 ps-3">
+                    <li>Declining or flat.</li>
+                    <li>0–9% growth since last quarter.</li>
+                    <li>10–24% growth since last quarter.</li>
+                    <li>25–49% growth since last quarter.</li>
+                    <li>50% or more growth since last quarter and most customers remain after six months (around 80% or higher).</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+
+            <!-- II -->
+            <div class="accordion-item bg-dark text-white border-secondary">
+              <h2 class="accordion-header" id="iiHead">
+                <button class="accordion-button collapsed bg-dark text-white py-3 d-flex flex-column flex-sm-row align-items-center align-items-sm-start"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#iiBody" aria-expanded="false" aria-controls="iiBody">
+                  <!-- Left column: title -->
+                  <span class="text-white me-sm-3 flex-grow-1 w-100 w-sm-auto mx-auto mx-sm-0 text-center text-sm-start text-wrap text-break">
+                    Impact Index (II)
+                  </span>
+                  <!-- Right column: badges stacked vertically -->
+                    <span class="d-flex flex-column align-items-center align-items-sm-end ms-sm-2 mt-2 mt-sm-0 w-100 w-sm-auto mx-auto mx-sm-0 gap-2">
+                      <span class="badge bg-secondary w-100 w-sm-auto text-center text-break">One number: % improvement</span>
+                      <span class="badge bg-secondary w-100 w-sm-auto text-center text-break">Proof: audited study
+                    </span>
+                  </span>
+                  </button>
+              </h2>
+              <div id="iiBody" class="accordion-collapse collapse" aria-labelledby="iiHead" data-bs-parent="#guidanceAccordion">
+                <div class="accordion-body pt-2">
+                  <ol class="mb-0 ps-3">
+                    <li>Only stories; no measurement.</li>
+                    <li>Up to 5% improvement one time.</li>
+                    <li>At least 10% improvement one time (one outcome).</li>
+                    <li>At least 20% improvement, replicated (two sites or two outcomes).</li>
+                    <li>At least 30% improvement, replicated or verified by an independent third party.</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+
+            <!-- EVI -->
+            <div class="accordion-item bg-dark text-white border-secondary">
+              <h2 class="accordion-header" id="eviHead">
+                <button class="accordion-button collapsed bg-dark text-white py-3 d-flex flex-column flex-sm-row align-items-center align-items-sm-start"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#eviBody" aria-expanded="false" aria-controls="eviBody">
+                  <!-- Left column: title -->
+                 <span class="text-white me-sm-3 flex-grow-1 w-100 w-sm-auto mx-auto mx-sm-0 text-center text-sm-start text-wrap text-break">
+                    Economic Viability Index (EVI)
+                  </span>
+                  <!-- Right column: badges stacked vertically -->
+                     <span class="d-flex flex-column align-items-center align-items-sm-end ms-sm-2 mt-2 mt-sm-0 w-100 w-sm-auto mx-auto mx-sm-0 gap-2">
+                      <span class="badge bg-secondary w-100 w-sm-auto text-center text-break">One number: payback (months)</span>
+                      <span class="badge bg-secondary w-100 w-sm-auto text-center text-break">Proof: cost/benefit (base &amp; downside)
+                    </span>
+                  </span>
+                  </button>
+              </h2>
+              <div id="eviBody" class="accordion-collapse collapse" aria-labelledby="eviHead" data-bs-parent="#guidanceAccordion">
+                <div class="accordion-body pt-2">
+                  <ol class="mb-0 ps-3">
+                    <li>Payback greater than 24 months or negative.</li>
+                    <li>18–24 months.</li>
+                    <li>12–18 months.</li>
+                    <li>6–12 months.</li>
+                    <li>Fewer than 6 months and still holds in the downside scenario.</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div><!-- /accordion -->
+
+        </div><!-- /card-body -->
+      </div><!-- /card -->
+    </div><!-- /col -->
+
+    <!-- Disclaimer -->
+    <div class="col-12 col-lg-6">
+      <div class="card card-elevate register-card text-white h-100">
+        <div class="card-body">
+          <h5 class="card-title">Disclaimer</h5>
+          <div class="text-white-50">
+          <p><em>Experimental register.</em> This site aggregates publicly accessible information and the author’s independent scoring framework (“Innovation Fitness Scorecard”). It is provided strictly for general information, research, and discussion, and is <strong>not</strong> advice.</p>
+          <ul>
+            <li><strong>No claims of completeness or accuracy.</strong> Sources may be incomplete or revised without notice. Summaries can contain errors.</li>
+            <li><strong>No reliance.</strong> Do not make operational, purchasing, investment, or policy decisions based on this register.</li>
+            <li><strong>No warranties; use at your own risk.</strong> Content is provided “as is.”</li>
+            <li><strong>Corrections &amp; takedown.</strong> Email <strong>info(at)aethika.com</strong> with concerns or updated evidence; we will review in good faith.</li>
+          </ul>
+          </div>
+          <div class="text-white-50 small">Dataset version: <span id="datasetVersion">—</span></div>
+        </div><!-- /card-body -->
+      </div><!-- /card -->
+    </div><!-- /col -->
+  </div><!-- /row -->
+      </div>
+</section>
+  </main>
+
+  <footer class="footer py-5">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-md-6">
+          <img src="assets/img/aethika-logo.png" alt="Aethika" class="footer-logo mb-3">
+          <p class="mb-0 small">Governance architecture for system-mediated organisations.</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <a href="index.html#thesis">Thesis</a>
+          <a href="index.html#model">Model</a>
+          <a href="governance-effectiveness-diagnostic.html">Diagnostic</a>
+          <a href="insights.html">Insights</a>
+          <a href="privacy.html">Privacy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="assets/js/aethika.js"></script>
+
+  <script>
+  "use strict";
+
+  // Column order for CSV export and table mapping
+  const COLUMNS = [
+  "Innovation",
+  "Sector",
+  "Organisation",
+  "Product",
+  "Use Case",
+  "Index",
+  "Rating (1–5)",
+  "One Number to Check",
+  "Commentary (explain what the number means in context)",
+  "Proof Artefact (type of evidence)",
+  "Source URL"
+];
+
+  const el = (q) => document.querySelector(q);
+
+  function escCSV(t) {
+    return '\"' + String(t ?? '').replace(/\"/g,'\"\"') + '\"';
+  }
+
+  function linkify(url) {
+    if (!url) return "";
+    const safe = String(url).replace(/"/g, "%22");
+    return '<a class="source-link" href="' + safe + '" target="_blank" rel="noopener">Source <i class="bi bi-box-arrow-up-right"></i></a>';
+  }
+
+  function escHTML(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function toCSV(rows) {
+    const header = COLUMNS.join(",");
+    const lines  = rows.map(r => COLUMNS.map(k => escCSV(r[k])).join(","));
+    return [header, ...lines].join("\\n");
+  }
+
+  function computeSummary(rows) {
+  // Keep average by Sector as before
+  const bySector = {};
+  const byIndex = {};
+  for (const r of rows) {
+    const sec = r["Sector"] || "";
+    const idx = r["Index"] || "";
+    const val = Number(r["Rating (1–5)"]);
+    if (!isNaN(val)) {
+      (bySector[sec] ||= []).push(val);
+      (byIndex[idx]  ||= []).push(val);
+    }
+  }
+  const mean = (arr) => arr.length ? arr.reduce((a,b)=>a+b,0) / arr.length : 0;
+  const sectorPairs = Object.entries(bySector).map(([k,arr]) => [k, mean(arr).toFixed(2)]);
+
+  // Per-solution composite (mean of the index ratings for each unique solution)
+  function solKey(r){
+    return [
+      r["Innovation"] ?? "",
+      r["Sector"] ?? "",
+      r["Business Capability"] ?? "",
+      r["Organisation"] ?? r["Organisation / Product"] ?? "",
+      r["Product"] ?? "",
+      r["Use Case"] ?? ""
+    ].join("||");
+  }
+  const perSolution = new Map();
+  for (const r of rows) {
+    const v = Number(r["Rating (1–5)"]);
+    const key = solKey(r);
+    if (!perSolution.has(key)) {
+      perSolution.set(key, { innovation: r["Innovation"] || "", ratings: [] });
+    }
+    if (!Number.isNaN(v)) perSolution.get(key).ratings.push(v);
+  }
+  const compsByInnovation = new Map();
+  perSolution.forEach(({innovation, ratings}) => {
+    if (!ratings.length) return;
+    const composite = ratings.reduce((a,b)=>a+b,0) / ratings.length;
+    (compsByInnovation.get(innovation) || compsByInnovation.set(innovation, []).get(innovation)).push(composite);
+  });
+  const median = (arr) => {
+    if (!arr.length) return 0;
+    const a = [...arr].sort((x,y)=>x-y);
+    const m = Math.floor(a.length/2);
+    return a.length % 2 ? a[m] : (a[m-1] + a[m]) / 2;
+  };
+  const byInnovationTriples = Array.from(compsByInnovation.entries())
+    .map(([name, arr]) => [name, median(arr).toFixed(2), arr.length])
+    .sort((a,b) => parseFloat(b[1]) - parseFloat(a[1]) || a[0].localeCompare(b[0]));
+
+  return { byInnovationTriples, bySector: sectorPairs };
+}
+
+  // Triple-aware card: [Innovation, Median, Solutions]
+function mkCard3(title, triples) {
+  const header = `
+    <div class="d-flex justify-content-between text-white-50 border-bottom border-secondary pb-1">
+      <span>Innovation</span>
+      <div class="d-flex" style="gap:1rem;">
+        <span class="text-end" style="min-width:6ch;">Median</span>
+        <span class="text-end" style="min-width:9ch;">#Solutions</span>
+      </div>
+    </div>`;
+  const rowsHtml = (triples || []).map(([k,v,n]) => `
+    <div class="d-flex justify-content-between border-bottom border-secondary py-1">
+      <span class="text-white-50">${k}</span>
+      <div class="d-flex" style="gap:1rem;">
+        <strong class="text-end" style="min-width:6ch;">${v}</strong>
+        <span class="text-end text-white-50" style="min-width:9ch;">${n}</span>
+      </div>
+    </div>`).join("");
+  return `
+    <div class="col-12 col-lg-6">
+      <div class="card card-elevate register-card text-white h-100">
+        <div class="card-body">
+          <h6 class="card-title mb-3">${title}</h6>
+          ${header}
+          ${rowsHtml}
+        </div>
+      </div>
+    </div>`;
+}
+
+
+    // Indices legend card to sit beside the median summary card
+    function mkIndicesCard() {
+      return `
+ <div class="col-12 col-lg-6">
+      <div class="card card-elevate register-card text-white h-100">
+        <div class="card-body">
+          <h6 class="card-title mb-3">The Innovation Fitness Indices</h6>
+          <div class="table-responsive">
+  <table class="table table-dark table-bordered table-sm align-middle mb-0" style="table-layout:fixed;">
+    <colgroup>
+      <col style="width:22ch;">   <!-- Index -->
+      <col>                       <!-- What it measures -->
+    </colgroup>
+    <tbody>
+      <tr>
+        <td>Index</td>
+        <td>What it measures</td>
+      </tr>
+      <tr>
+        <td><span class="text-white-50">Technology Readiness Index(TRI)</span></td>
+        <td><span class="text-white-50">How mature is the technology in practical, deployable terms? Not to be confused with Technology Readiness Level (Feasibility) — it’s about deployability right now.</span></td>
+      </tr>
+      <tr>
+        <td><span class="text-white-50">Adoption Velocity Index (AVI)</span></td>
+        <td><span class="text-white-50">How quickly is it being adopted across relevant sectors?</span></td>
+      </tr>
+      <tr>
+        <td><span class="text-white-50">Impact Index (II)</span></td>
+        <td><span class="text-white-50">What measurable societal or environmental benefits does it deliver?</span></td>
+      </tr>
+      <tr>
+        <td><span class="text-white-50">Economic Viability Index (EVI)</span></td>
+        <td><span class="text-white-50">Is it scalable, sustainable, and economically sound?</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+        </div><!-- /card-body -->
+      </div><!-- /card -->
+    </div><!-- /col -->`
+    }
+
+    
+    
+function renderSummaryCards(summary) {
+    const wrap = el("#summaryCards");
+    function mkCard(title, pairs) {
+      return `
+        <div class="col-12 col-lg-6">
+          <div class="card card-elevate register-card text-white h-100">
+            <div class="card-body">
+              <h6 class="card-title mb-3">${title}</h6>
+              ${pairs.map(([k,v]) => `
+                <div class="d-flex justify-content-between border-bottom border-secondary py-1">
+                  <span class="text-white-50">${k}</span>
+                  <strong>${v}</strong>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        </div>`;
+    }
+    wrap.innerHTML = mkIndicesCard()+ mkCard3("Median Fitness by Innovation: Score 1-5", summary.byInnovationTriples);
+  }
+
+  async function loadJSON() {
+    // Order: ?data= override -> default path -> inline fallback
+    const qp = new URLSearchParams(location.search).get("data");
+    const candidates = qp ? [qp] : ["data/scorecard.json", "scorecard.json", "data/scorecard_master.json", "scorecard_master.json"];
+    const errors = [];
+
+    for (const p of candidates) {
+      try {
+        const res = await fetch(p, { cache: "no-store" });
+        if (res.ok) {
+          const j = await res.json();
+          j.__path = p;
+          return j;
+        } else {
+          errors.push(p + " → HTTP " + res.status);
+        }
+      } catch (e) {
+        errors.push(p + " → " + e.message);
+      }
+    }
+
+    // Inline fallback
+    const inline = document.getElementById("inlineScorecardJson");
+    if (inline && inline.textContent.trim()) {
+      try {
+        const j = JSON.parse(inline.textContent);
+        j.__path = "inline";
+        return j;
+      } catch (e) {
+        errors.push("inline JSON → " + e.message);
+      }
+    }
+
+    const diag = el("#diagnostics");
+    diag.classList.remove("d-none");
+    diag.textContent = "Failed to load scorecard JSON. Tried:\\n  - " + candidates.join("\\n  - ");
+    throw new Error("JSON load failed: " + errors.join(" | "));
+  }
+
+  
+  function renderTable(rows) {
+  const tbody = el("#scoreTable tbody");
+  const abbr = {
+    "Technology Readiness Index": "TRI",
+    "Adoption Velocity Index": "AVI",
+    "Impact Index": "II",
+    "Economic Viability Index": "EVI"
+  };
+
+  // Group by Solution key: Innovation + Sector + Organisation + Product + Use Case
+  const keyOf = (r) => [
+    r["Innovation"] ?? "",
+    r["Sector"] ?? "",
+    r["Organisation"] ?? "",
+    r["Product"] ?? "",
+    r["Use Case"] ?? ""
+  ].join("||");
+
+  const groups = {};
+  for (const r of rows) {
+    const k = keyOf(r);
+    (groups[k] ||= []).push(r);
+  }
+
+  // Ensure per-group row order: TRI, AVI, II, EVI (fallback alphabetical)
+  const order = ["Technology Readiness Index", "Adoption Velocity Index", "Impact Index", "Economic Viability Index"];
+  function sortByIndex(a,b) {
+    const ia = order.indexOf(a["Index"]); const ib = order.indexOf(b["Index"]);
+    if (ia === -1 && ib === -1) return String(a["Index"]).localeCompare(String(b["Index"]));
+    if (ia === -1) return 1;
+    if (ib === -1) return -1;
+    return ia - ib;
+  }
+
+  // Render
+  const rowsHtml = [];
+  let isFirstGroup = true;
+  for (const [k, list] of Object.entries(groups)) {
+    const sorted = list.slice().sort(sortByIndex);
+    const rowspan = sorted.length || 1;
+    const [innovation, sector, organisation, product, usecase] = k.split("||");
+
+    for (let i = 0; i < sorted.length; i++) {
+      const r = sorted[i];
+      const idxLabel = abbr[r["Index"]] || (r["Index"] ?? "");
+      const rating   = r["Rating (1–5)"] ?? "";
+      const ratingClass = "score-" + String(rating).trim().charAt(0);
+      const oneNum   = r["One Number to Check"] ?? "";
+      const comm     = r["Commentary (explain what the number means in context)"] ?? "";
+      const proof    = r["Proof Artefact (type of evidence)"] ?? "";
+      const srcUrl   = r["Source URL"] ?? "";
+      const orgTitle = escHTML(organisation);
+      const prodTitle = escHTML(product);
+
+      rowsHtml.push(
+        `<tr class="${i===0 ? 'group-head' : 'group-body'} ${i===0 && !isFirstGroup ? 'group-sep' : ''}">` +
+          (i===0 ? `<td class="merged" rowspan="${rowspan}">${escHTML(innovation)}</td>` : "") +
+          (i===0 ? `<td class="merged" rowspan="${rowspan}">${escHTML(sector)}</td>` : "") +
+          (i===0 ? `<td class="merged truncate" title="${orgTitle}" rowspan="${rowspan}">${escHTML(organisation)}</td>` : "") +
+          (i===0 ? `<td class="merged truncate" title="${prodTitle}" rowspan="${rowspan}">${escHTML(product)}</td>` : "") +
+          (i===0 ? `<td class="merged cell-usecase" rowspan="${rowspan}">${escHTML(usecase)}</td>` : "") +
+          `<td><span class="index-badge">${escHTML(idxLabel)}</span></td>` +
+          `<td><span class="score-pill ${ratingClass}">${escHTML(rating)}</span></td>` +
+          `<td class="cell-one-number">${escHTML(oneNum)}</td>` +
+          `<td class="cell-commentary">${escHTML(comm)}</td>` +
+          `<td class="cell-proof">${escHTML(proof)}</td>` +
+          `<td>${linkify(srcUrl)}</td>` +
+        `</tr>`
+      );
+    }
+    isFirstGroup = false;
+  }
+
+  tbody.innerHTML = rowsHtml.join("");
+  el("#rowCount").textContent = `${rows.length} rows (${Object.keys(groups).length} solutions)`;
+}
+
+
+  async function main
+() {
+    const yearEl = el("#year");
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+    const data = await loadJSON();
+    const rows = data.rows || [];
+
+    // Meta
+    el("#datasetMeta").textContent = `Dataset: ${data.source || "unknown"} · Rows: ${rows.length} · Version: ${data.version || "n/a"} · Path: ${data.__path}`;
+    el("#datasetVersion").textContent = data.version || "n/a";
+
+    // Filters
+    const sectors = Array.from(new Set(rows.map(r => r["Sector"]).filter(Boolean))).sort();
+const capabilities = Array.from(new Set(rows.map(r => r["Business Capability"]).filter(Boolean))).sort();
+const indices = Array.from(new Set(rows.map(r => r["Index"]).filter(Boolean))).sort();
+const innovations = Array.from(new Set(rows.map(r => r["Innovation"]).filter(Boolean))).sort();
+const sectorSel = el("#sectorFilter");
+const capabilitySel = el("#capabilityFilter");
+const indexSel  = el("#indexFilter");
+const innovationSel = el("#innovationFilter");
+sectorSel.innerHTML = '<option value="">All Sectors</option>' + sectors.map(s => `<option>${s}</option>`).join("");
+capabilitySel.innerHTML = '<option value="">All Capabilities</option>' + capabilities.map(s => `<option>${s}</option>`).join("");
+indexSel.innerHTML  = '<option value="">All Indices</option>'  + indices.map(s => `<option>${s}</option>`).join("");
+innovationSel.innerHTML = '<option value="">All Innovations</option>' + innovations.map(s => `<option>${s}</option>`).join("");
+
+
+    // Initial render
+    function applyFilters() {
+      const s = sectorSel.value;
+      const c = capabilitySel.value;
+      const i = indexSel.value;
+      const inv = innovationSel.value;
+      const filtered = rows.filter(r =>
+        (!s || r["Sector"] === s) &&
+        (!c || r["Business Capability"] === c) &&
+        (!i || r["Index"] === i) &&
+        (!inv || r["Innovation"] === inv)
+      );
+      renderTable(filtered, rows);
+      return filtered;
+    }
+    let current = applyFilters();
+    sectorSel.addEventListener("change", () => { current = applyFilters(); });
+    capabilitySel.addEventListener("change", () => { current = applyFilters(); });
+    indexSel .addEventListener("change", () => { current = applyFilters(); });
+    innovationSel.addEventListener("change", () => { current = applyFilters(); });
+
+    // Summary
+    const summary = computeSummary(rows);
+    renderSummaryCards(summary);
+
+    // Download visible CSV
+    el("#downloadBtn").addEventListener("click", () => {
+      const csv = toCSV(current);
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "innovation_fitness_visible_rows.csv";
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  }
+
+  main().catch((err) => {
+    console.error(err);
+    el("#datasetMeta").textContent = "Failed to load scorecard dataset.";
+  });
+  </script>
+
+  <!-- Inline fallback JSON (auto-generated) -->
+  <script type="application/json" id="inlineScorecardJson">{
+  "version": "2026-07-04T02:51:57.114434+00:00",
+  "title": "Innovation Fitness Register",
+  "source": "Innovation_Fitness_Register_Master.xlsx",
+  "sheet": "Master Public Register",
+  "row_count": 102,
+  "columns": [
+    "Deployment ID",
+    "Innovation",
+    "Sector",
+    "Business Capability",
+    "Organisation",
+    "Product",
+    "Vendor",
+    "Country",
+    "Deployment Status",
+    "Use Case",
+    "Index",
+    "Rating (1–5)",
+    "One Number to Check",
+    "Commentary (explain what the number means in context)",
+    "Proof Artefact (type of evidence)",
+    "Source URL",
+    "Source ID",
+    "Last Verified"
+  ],
+  "rows": [
+    {
+      "Deployment ID": "D000010",
+      "Innovation": "AI Ready Data Infrastructure",
+      "Sector": "Public Sector",
+      "Business Capability": "Customer Support",
+      "Organisation": "Singapore GovTech",
+      "Product": "AIBots Platform",
+      "Vendor": null,
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "Government-wide AI assistants (Ask Jamie GPT & others)",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "National production platform spanning 115 agencies (continuous ops)",
+      "Commentary (explain what the number means in context)": "Scale and continuity across many agencies indicate mature operational readiness",
+      "Proof Artefact (type of evidence)": "Official programme page (platform scope/scale)",
+      "Source URL": "https://www.tech.gov.sg/product/aibots/",
+      "Source ID": "S0010",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000010",
+      "Innovation": "AI Ready Data Infrastructure",
+      "Sector": "Public Sector",
+      "Business Capability": "Customer Support",
+      "Organisation": "Singapore GovTech",
+      "Product": "AIBots Platform",
+      "Vendor": null,
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "Government-wide AI assistants (Ask Jamie GPT & others)",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "1",
+      "Commentary (explain what the number means in context)": "000, 000+ messages over 6 months (Aug 2024–Feb 2025), Concrete cross-agency usage volume within a defined period (strong adoption proxy)",
+      "Proof Artefact (type of evidence)": "Official programme page with usage counters",
+      "Source URL": "https://www.tech.gov.sg/product/aibots/",
+      "Source ID": "S0010",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000010",
+      "Innovation": "AI Ready Data Infrastructure",
+      "Sector": "Public Sector",
+      "Business Capability": "Customer Support",
+      "Organisation": "Singapore GovTech",
+      "Product": "AIBots Platform",
+      "Vendor": null,
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "Government-wide AI assistants (Ask Jamie GPT & others)",
+      "Index": "Impact Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "40",
+      "Commentary (explain what the number means in context)": "000+ users & 12, 000+ bots across 115 agencies, Shows breadth of live use (users/bots/agencies) impacting service delivery footprint",
+      "Proof Artefact (type of evidence)": "Official programme page with usage counters",
+      "Source URL": "https://www.tech.gov.sg/product/aibots/",
+      "Source ID": "S0010",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000010",
+      "Innovation": "AI Ready Data Infrastructure",
+      "Sector": "Public Sector",
+      "Business Capability": "Customer Support",
+      "Organisation": "Singapore GovTech",
+      "Product": "AIBots Platform",
+      "Vendor": null,
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "Government-wide AI assistants (Ask Jamie GPT & others)",
+      "Index": "Economic Viability Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "Shared platform economics across agencies (pooled infra)",
+      "Commentary (explain what the number means in context)": "Shared services model implies favourable payback vs. siloed builds (platform-economics proxy)",
+      "Proof Artefact (type of evidence)": "Official programme page (platform model)",
+      "Source URL": "https://www.tech.gov.sg/product/aibots/",
+      "Source ID": "S0010",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000047",
+      "Innovation": "AI Ready Data Infrastructure",
+      "Sector": "Software / Document AI",
+      "Business Capability": "Document Processing",
+      "Organisation": "Affinda",
+      "Product": "Amazon Bedrock document AI platform",
+      "Vendor": "AWS",
+      "Country": "Australia / Global",
+      "Deployment Status": "Production",
+      "Use Case": "Generative AI document extraction and processing",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "Document AI platform running on Amazon Bedrock",
+      "Commentary (explain what the number means in context)": "The case study describes an operational document AI product using Bedrock.",
+      "Proof Artefact (type of evidence)": "Vendor customer story",
+      "Source URL": "https://aws.amazon.com/solutions/case-studies/affinda-case-study/",
+      "Source ID": "S-ADD-004",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000047",
+      "Innovation": "AI Ready Data Infrastructure",
+      "Sector": "Software / Document AI",
+      "Business Capability": "Document Processing",
+      "Organisation": "Affinda",
+      "Product": "Amazon Bedrock document AI platform",
+      "Vendor": "AWS",
+      "Country": "Australia / Global",
+      "Deployment Status": "Production",
+      "Use Case": "Generative AI document extraction and processing",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "90% reduction in setup time for new use cases",
+      "Commentary (explain what the number means in context)": "Faster setup directly improves how quickly new document-processing use cases can be adopted.",
+      "Proof Artefact (type of evidence)": "Case-study rollout/setup metric",
+      "Source URL": "https://aws.amazon.com/solutions/case-studies/affinda-case-study/",
+      "Source ID": "S-ADD-004",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000047",
+      "Innovation": "AI Ready Data Infrastructure",
+      "Sector": "Software / Document AI",
+      "Business Capability": "Document Processing",
+      "Organisation": "Affinda",
+      "Product": "Amazon Bedrock document AI platform",
+      "Vendor": "AWS",
+      "Country": "Australia / Global",
+      "Deployment Status": "Production",
+      "Use Case": "Generative AI document extraction and processing",
+      "Index": "Impact Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "90% reduction in setup time",
+      "Commentary (explain what the number means in context)": "The metric shows a large operational improvement in time-to-configure new use cases.",
+      "Proof Artefact (type of evidence)": "Case-study quantified benefit",
+      "Source URL": "https://aws.amazon.com/solutions/case-studies/affinda-case-study/",
+      "Source ID": "S-ADD-004",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000047",
+      "Innovation": "AI Ready Data Infrastructure",
+      "Sector": "Software / Document AI",
+      "Business Capability": "Document Processing",
+      "Organisation": "Affinda",
+      "Product": "Amazon Bedrock document AI platform",
+      "Vendor": "AWS",
+      "Country": "Australia / Global",
+      "Deployment Status": "Production",
+      "Use Case": "Generative AI document extraction and processing",
+      "Index": "Economic Viability Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "90% cost savings for product delivery team",
+      "Commentary (explain what the number means in context)": "The source states a direct product-delivery cost saving.",
+      "Proof Artefact (type of evidence)": "Case-study cost-saving metric",
+      "Source URL": "https://aws.amazon.com/solutions/case-studies/affinda-case-study/",
+      "Source ID": "S-ADD-004",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000049",
+      "Innovation": "Agentic AI",
+      "Sector": "Automotive",
+      "Business Capability": "Customer Support",
+      "Organisation": "LUXGEN",
+      "Product": "Vertex AI customer-service agent",
+      "Vendor": "Google Cloud",
+      "Country": "Taiwan",
+      "Deployment Status": "Production",
+      "Use Case": "AI agent for automotive customer service and data-driven driving experience",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "Zero-downtime car-commanding services supported with Compute Engine",
+      "Commentary (explain what the number means in context)": "The deployment supports operational automotive services where availability matters.",
+      "Proof Artefact (type of evidence)": "Google Cloud customer story",
+      "Source URL": "https://cloud.google.com/customers/luxgen",
+      "Source ID": "S-ADD-006",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000049",
+      "Innovation": "Agentic AI",
+      "Sector": "Automotive",
+      "Business Capability": "Customer Support",
+      "Organisation": "LUXGEN",
+      "Product": "Vertex AI customer-service agent",
+      "Vendor": "Google Cloud",
+      "Country": "Taiwan",
+      "Deployment Status": "Production",
+      "Use Case": "AI agent for automotive customer service and data-driven driving experience",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "Data tagging shortened from hours to minutes",
+      "Commentary (explain what the number means in context)": "The process improvement accelerates onboarding and use of customer data workflows.",
+      "Proof Artefact (type of evidence)": "Google Cloud customer story with workflow metric",
+      "Source URL": "https://cloud.google.com/customers/luxgen",
+      "Source ID": "S-ADD-006",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000049",
+      "Innovation": "Agentic AI",
+      "Sector": "Automotive",
+      "Business Capability": "Customer Support",
+      "Organisation": "LUXGEN",
+      "Product": "Vertex AI customer-service agent",
+      "Vendor": "Google Cloud",
+      "Country": "Taiwan",
+      "Deployment Status": "Production",
+      "Use Case": "AI agent for automotive customer service and data-driven driving experience",
+      "Index": "Impact Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "30% reduction in customer-service workloads",
+      "Commentary (explain what the number means in context)": "The source directly reports workload reduction through an AI agent powered by Vertex AI.",
+      "Proof Artefact (type of evidence)": "Customer-story outcome metric",
+      "Source URL": "https://cloud.google.com/customers/luxgen",
+      "Source ID": "S-ADD-006",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000049",
+      "Innovation": "Agentic AI",
+      "Sector": "Automotive",
+      "Business Capability": "Customer Support",
+      "Organisation": "LUXGEN",
+      "Product": "Vertex AI customer-service agent",
+      "Vendor": "Google Cloud",
+      "Country": "Taiwan",
+      "Deployment Status": "Production",
+      "Use Case": "AI agent for automotive customer service and data-driven driving experience",
+      "Index": "Economic Viability Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "80% lower customer-data-platform deployment cost",
+      "Commentary (explain what the number means in context)": "The source gives a direct deployment-cost reduction metric.",
+      "Proof Artefact (type of evidence)": "Customer-story cost metric",
+      "Source URL": "https://cloud.google.com/customers/luxgen",
+      "Source ID": "S-ADD-006",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000044",
+      "Innovation": "Agentic AI",
+      "Sector": "Financial Services",
+      "Business Capability": "Application Modernisation",
+      "Organisation": "Experian",
+      "Product": "AWS Transform for .NET",
+      "Vendor": "AWS",
+      "Country": "Global",
+      "Deployment Status": "Production",
+      "Use Case": ".NET application modernisation using agentic AI automation",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "687,600 lines of code transformed across seven projects",
+      "Commentary (explain what the number means in context)": "Production modernisation across seven projects demonstrates deployable maturity at enterprise scale.",
+      "Proof Artefact (type of evidence)": "Vendor customer story with transformation volume and project count",
+      "Source URL": "https://aws.amazon.com/solutions/case-studies/experian-agenticai/",
+      "Source ID": "S-ADD-001",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000044",
+      "Innovation": "Agentic AI",
+      "Sector": "Financial Services",
+      "Business Capability": "Application Modernisation",
+      "Organisation": "Experian",
+      "Product": "AWS Transform for .NET",
+      "Vendor": "AWS",
+      "Country": "Global",
+      "Deployment Status": "Production",
+      "Use Case": ".NET application modernisation using agentic AI automation",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "Seven modernisation projects completed using AWS Transform",
+      "Commentary (explain what the number means in context)": "Adoption is evidenced by use across a portfolio of applications rather than a single pilot.",
+      "Proof Artefact (type of evidence)": "Vendor customer story / project portfolio evidence",
+      "Source URL": "https://aws.amazon.com/solutions/case-studies/experian-agenticai/",
+      "Source ID": "S-ADD-001",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000044",
+      "Innovation": "Agentic AI",
+      "Sector": "Financial Services",
+      "Business Capability": "Application Modernisation",
+      "Organisation": "Experian",
+      "Product": "AWS Transform for .NET",
+      "Vendor": "AWS",
+      "Country": "Global",
+      "Deployment Status": "Production",
+      "Use Case": ".NET application modernisation using agentic AI automation",
+      "Index": "Impact Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "~40% reduction in developer effort",
+      "Commentary (explain what the number means in context)": "The source reports developer effort dropped by approximately 40% compared with a manual approach.",
+      "Proof Artefact (type of evidence)": "Before/after productivity evidence in customer story",
+      "Source URL": "https://aws.amazon.com/solutions/case-studies/experian-agenticai/",
+      "Source ID": "S-ADD-001",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000044",
+      "Innovation": "Agentic AI",
+      "Sector": "Financial Services",
+      "Business Capability": "Application Modernisation",
+      "Organisation": "Experian",
+      "Product": "AWS Transform for .NET",
+      "Vendor": "AWS",
+      "Country": "Global",
+      "Deployment Status": "Production",
+      "Use Case": ".NET application modernisation using agentic AI automation",
+      "Index": "Economic Viability Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "~300 engineering days saved",
+      "Commentary (explain what the number means in context)": "Engineering days saved provide a direct economic proxy for delivery-capacity gain and avoided manual effort.",
+      "Proof Artefact (type of evidence)": "Customer quote / quantified productivity saving",
+      "Source URL": "https://aws.amazon.com/solutions/case-studies/experian-agenticai/",
+      "Source ID": "S-ADD-001",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000055",
+      "Innovation": "Agentic AI",
+      "Sector": "Financial Services",
+      "Business Capability": "Customer Support",
+      "Organisation": "Nubank",
+      "Product": "Customer Support AI Agents",
+      "Vendor": "Nubank",
+      "Country": "Brazil / Global",
+      "Deployment Status": "Production",
+      "Use Case": "Evaluation-driven customer-support AI agents at 100M+ user scale",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "Five production agents across 100M+ user scale",
+      "Commentary (explain what the number means in context)": "The paper reports production deployments across multiple customer-support domains at large scale.",
+      "Proof Artefact (type of evidence)": "Research paper with production deployment details",
+      "Source URL": "https://arxiv.org/abs/2606.08867",
+      "Source ID": "S-ADD-012",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000055",
+      "Innovation": "Agentic AI",
+      "Sector": "Financial Services",
+      "Business Capability": "Customer Support",
+      "Organisation": "Nubank",
+      "Product": "Customer Support AI Agents",
+      "Vendor": "Nubank",
+      "Country": "Brazil / Global",
+      "Deployment Status": "Production",
+      "Use Case": "Evaluation-driven customer-support AI agents at 100M+ user scale",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "Five production use cases spanning card delivery, debt, credit-limit, card management and product explanation",
+      "Commentary (explain what the number means in context)": "Breadth across multiple use cases shows adoption across customer-support domains.",
+      "Proof Artefact (type of evidence)": "Research paper deployment scope",
+      "Source URL": "https://arxiv.org/abs/2606.08867",
+      "Source ID": "S-ADD-012",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000055",
+      "Innovation": "Agentic AI",
+      "Sector": "Financial Services",
+      "Business Capability": "Customer Support",
+      "Organisation": "Nubank",
+      "Product": "Customer Support AI Agents",
+      "Vendor": "Nubank",
+      "Country": "Brazil / Global",
+      "Deployment Status": "Production",
+      "Use Case": "Evaluation-driven customer-support AI agents at 100M+ user scale",
+      "Index": "Impact Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "37 percentage-point tNPS improvement and 29 percentage-point self-service gain",
+      "Commentary (explain what the number means in context)": "Large A/B-tested improvements in customer-satisfaction and self-service rate.",
+      "Proof Artefact (type of evidence)": "Research paper with A/B-tested metrics",
+      "Source URL": "https://arxiv.org/abs/2606.08867",
+      "Source ID": "S-ADD-012",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000055",
+      "Innovation": "Agentic AI",
+      "Sector": "Financial Services",
+      "Business Capability": "Customer Support",
+      "Organisation": "Nubank",
+      "Product": "Customer Support AI Agents",
+      "Vendor": "Nubank",
+      "Country": "Brazil / Global",
+      "Deployment Status": "Production",
+      "Use Case": "Evaluation-driven customer-support AI agents at 100M+ user scale",
+      "Index": "Economic Viability Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "29 percentage-point self-service-rate gain",
+      "Commentary (explain what the number means in context)": "A higher self-service rate is a strong operational-efficiency and cost-to-serve proxy.",
+      "Proof Artefact (type of evidence)": "Research paper with online impact metric",
+      "Source URL": "https://arxiv.org/abs/2606.08867",
+      "Source ID": "S-ADD-012",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000045",
+      "Innovation": "Agentic AI",
+      "Sector": "Logistics / Delivery",
+      "Business Capability": "Customer Support",
+      "Organisation": "DoorDash",
+      "Product": "Amazon Bedrock + Claude voice AI",
+      "Vendor": "AWS / Anthropic",
+      "Country": "United States",
+      "Deployment Status": "Production",
+      "Use Case": "Voice AI contact-centre support for Dasher inquiries",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "≤2.5 second response latency",
+      "Commentary (explain what the number means in context)": "The voice application met the speed requirement needed for real-time support interactions.",
+      "Proof Artefact (type of evidence)": "Vendor case study with latency metric",
+      "Source URL": "https://aws.amazon.com/solutions/case-studies/doordash-bedrock-case-study/",
+      "Source ID": "S-ADD-002",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000045",
+      "Innovation": "Agentic AI",
+      "Sector": "Logistics / Delivery",
+      "Business Capability": "Customer Support",
+      "Organisation": "DoorDash",
+      "Product": "Amazon Bedrock + Claude voice AI",
+      "Vendor": "AWS / Anthropic",
+      "Country": "United States",
+      "Deployment Status": "Production",
+      "Use Case": "Voice AI contact-centre support for Dasher inquiries",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "Hundreds of thousands of daily AI-powered calls",
+      "Commentary (explain what the number means in context)": "Daily call volume indicates production-scale use, not a narrow pilot.",
+      "Proof Artefact (type of evidence)": "Anthropic/AWS case-study operational volume",
+      "Source URL": "https://aws.amazon.com/solutions/case-studies/doordash-bedrock-case-study/",
+      "Source ID": "S-ADD-002",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000045",
+      "Innovation": "Agentic AI",
+      "Sector": "Logistics / Delivery",
+      "Business Capability": "Customer Support",
+      "Organisation": "DoorDash",
+      "Product": "Amazon Bedrock + Claude voice AI",
+      "Vendor": "AWS / Anthropic",
+      "Country": "United States",
+      "Deployment Status": "Production",
+      "Use Case": "Voice AI contact-centre support for Dasher inquiries",
+      "Index": "Impact Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "50% reduction in AI development time",
+      "Commentary (explain what the number means in context)": "The implementation reduced the time required to build generative AI applications.",
+      "Proof Artefact (type of evidence)": "Case-study productivity metric",
+      "Source URL": "https://aws.amazon.com/solutions/case-studies/doordash-bedrock-case-study/",
+      "Source ID": "S-ADD-002",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000045",
+      "Innovation": "Agentic AI",
+      "Sector": "Logistics / Delivery",
+      "Business Capability": "Customer Support",
+      "Organisation": "DoorDash",
+      "Product": "Amazon Bedrock + Claude voice AI",
+      "Vendor": "AWS / Anthropic",
+      "Country": "United States",
+      "Deployment Status": "Production",
+      "Use Case": "Voice AI contact-centre support for Dasher inquiries",
+      "Index": "Economic Viability Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "Thousands fewer daily escalations to live agents",
+      "Commentary (explain what the number means in context)": "Reduced live-agent escalation is a strong operational cost and capacity proxy.",
+      "Proof Artefact (type of evidence)": "Case-study operational outcome",
+      "Source URL": "https://aws.amazon.com/solutions/case-studies/doordash-bedrock-case-study/",
+      "Source ID": "S-ADD-002",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000056",
+      "Innovation": "Agentic AI",
+      "Sector": "Software / Customer Service",
+      "Business Capability": "Customer Support",
+      "Organisation": "Intercom",
+      "Product": "Fin AI Agent with Claude",
+      "Vendor": "Anthropic / Intercom",
+      "Country": "Europe / Global",
+      "Deployment Status": "Production",
+      "Use Case": "AI customer-service agent resolving customer support conversations",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "Responses in seconds; support in 45+ languages",
+      "Commentary (explain what the number means in context)": "The product is operating as a real-time, multilingual support agent.",
+      "Proof Artefact (type of evidence)": "Anthropic customer story",
+      "Source URL": "https://www.anthropic.com/customers/intercom",
+      "Source ID": "S-ADD-013",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000056",
+      "Innovation": "Agentic AI",
+      "Sector": "Software / Customer Service",
+      "Business Capability": "Customer Support",
+      "Organisation": "Intercom",
+      "Product": "Fin AI Agent with Claude",
+      "Vendor": "Anthropic / Intercom",
+      "Country": "Europe / Global",
+      "Deployment Status": "Production",
+      "Use Case": "AI customer-service agent resolving customer support conversations",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "Used by Intercom to support 25,000+ customer companies",
+      "Commentary (explain what the number means in context)": "The deployment footprint spans Intercom's customer-support platform and customer base.",
+      "Proof Artefact (type of evidence)": "Anthropic customer story",
+      "Source URL": "https://www.anthropic.com/customers/intercom",
+      "Source ID": "S-ADD-013",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000056",
+      "Innovation": "Agentic AI",
+      "Sector": "Software / Customer Service",
+      "Business Capability": "Customer Support",
+      "Organisation": "Intercom",
+      "Product": "Fin AI Agent with Claude",
+      "Vendor": "Anthropic / Intercom",
+      "Country": "Europe / Global",
+      "Deployment Status": "Production",
+      "Use Case": "AI customer-service agent resolving customer support conversations",
+      "Index": "Impact Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "Up to 86% support-volume resolution; 51% average out-of-box resolution",
+      "Commentary (explain what the number means in context)": "The source gives direct support-resolution metrics for Fin powered by Claude.",
+      "Proof Artefact (type of evidence)": "Anthropic customer story with outcome metrics",
+      "Source URL": "https://www.anthropic.com/customers/intercom",
+      "Source ID": "S-ADD-013",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000056",
+      "Innovation": "Agentic AI",
+      "Sector": "Software / Customer Service",
+      "Business Capability": "Customer Support",
+      "Organisation": "Intercom",
+      "Product": "Fin AI Agent with Claude",
+      "Vendor": "Anthropic / Intercom",
+      "Country": "Europe / Global",
+      "Deployment Status": "Production",
+      "Use Case": "AI customer-service agent resolving customer support conversations",
+      "Index": "Economic Viability Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "Response times reduced from 30 minutes to seconds",
+      "Commentary (explain what the number means in context)": "Major response-time reduction and automated resolution create a strong economic value proxy.",
+      "Proof Artefact (type of evidence)": "Anthropic customer story with time metric",
+      "Source URL": "https://www.anthropic.com/customers/intercom",
+      "Source ID": "S-ADD-013",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000002-R",
+      "Innovation": "Decision Intelligence",
+      "Sector": "Healthcare",
+      "Business Capability": "Clinical Trial Matching",
+      "Organisation": "Mayo Clinic",
+      "Product": "IBM Watson for Clinical Trial Matching",
+      "Vendor": "IBM Watson Health",
+      "Country": "USA",
+      "Deployment Status": "Production / Implemented",
+      "Use Case": "Clinical trial matching for breast-cancer patients",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "Implemented in Mayo ambulatory breast-cancer practice in July 2016",
+      "Commentary (explain what the number means in context)": "Source confirms Mayo implemented Watson for Clinical Trial Matching in its ambulatory practice for breast-cancer patients. Use as deployment/readiness evidence, not as uptime evidence.",
+      "Proof Artefact (type of evidence)": "Mayo Clinic News Network implementation report",
+      "Source URL": "https://newsnetwork.mayoclinic.org/discussion/mayo-clinics-clinical-trial-matching-project-sees-higher-enrollment-in-breast-cancer-trials-through-use-of-artificial-intelligence/",
+      "Source ID": "S-MAYO-CTM",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000002-R",
+      "Innovation": "Decision Intelligence",
+      "Sector": "Healthcare",
+      "Business Capability": "Clinical Trial Matching",
+      "Organisation": "Mayo Clinic",
+      "Product": "IBM Watson for Clinical Trial Matching",
+      "Vendor": "IBM Watson Health",
+      "Country": "USA",
+      "Deployment Status": "Production / Implemented",
+      "Use Case": "Clinical trial matching for breast-cancer patients",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "All patients screened for all available clinical trial opportunities",
+      "Commentary (explain what the number means in context)": "Source states the speed and accuracy of Watson and screening coordinators enabled all patients to be screened for all available clinical-trial opportunities.",
+      "Proof Artefact (type of evidence)": "Mayo Clinic News Network implementation report",
+      "Source URL": "https://newsnetwork.mayoclinic.org/discussion/mayo-clinics-clinical-trial-matching-project-sees-higher-enrollment-in-breast-cancer-trials-through-use-of-artificial-intelligence/",
+      "Source ID": "S-MAYO-CTM",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000002-R",
+      "Innovation": "Decision Intelligence",
+      "Sector": "Healthcare",
+      "Business Capability": "Clinical Trial Matching",
+      "Organisation": "Mayo Clinic",
+      "Product": "IBM Watson for Clinical Trial Matching",
+      "Vendor": "IBM Watson Health",
+      "Country": "USA",
+      "Deployment Status": "Production / Implemented",
+      "Use Case": "Clinical trial matching for breast-cancer patients",
+      "Index": "Impact Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "80% average increase in breast-cancer systemic therapy trial enrolment over 11 months",
+      "Commentary (explain what the number means in context)": "Mayo reported an average 80% increase in enrolment to systemic therapy clinical trials for breast cancer in the 11 months after implementation.",
+      "Proof Artefact (type of evidence)": "Mayo Clinic News Network before/after deployment result",
+      "Source URL": "https://newsnetwork.mayoclinic.org/discussion/mayo-clinics-clinical-trial-matching-project-sees-higher-enrollment-in-breast-cancer-trials-through-use-of-artificial-intelligence/",
+      "Source ID": "S-MAYO-CTM",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000003-R",
+      "Innovation": "Decision Intelligence",
+      "Sector": "Healthcare",
+      "Business Capability": "ED Admission Prediction / Bed Planning",
+      "Organisation": "Mount Sinai Health System",
+      "Product": "Bio-Clinical BERT + XGBoost admission prediction model",
+      "Vendor": "Mount Sinai / Research",
+      "Country": "USA",
+      "Deployment Status": "Prospective evaluation / Not production",
+      "Use Case": "Emergency department admission prediction and bed planning",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 3,
+      "One Number to Check": "Prospective test across 46,912 ED visits after training on 1.8M visits",
+      "Commentary (explain what the number means in context)": "Source reports the model was trained on 1.8M emergency-department visits and tested prospectively on 46,912 ED visits across Mount Sinai. This is strong research/evaluation evidence, not a production uptime metric.",
+      "Proof Artefact (type of evidence)": "Healthcare IT News summary of Mayo Clinic Proceedings Digital Health study",
+      "Source URL": "https://www.healthcareitnews.com/news/hospital-bed-planning-triage-trained-ai-could-improve-care-delivery",
+      "Source ID": "S-MOUNT-SINAI-ED",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000003-R",
+      "Innovation": "Decision Intelligence",
+      "Sector": "Healthcare",
+      "Business Capability": "ED Admission Prediction / Bed Planning",
+      "Organisation": "Mount Sinai Health System",
+      "Product": "Bio-Clinical BERT + XGBoost admission prediction model",
+      "Vendor": "Mount Sinai / Research",
+      "Country": "USA",
+      "Deployment Status": "Prospective evaluation / Not production",
+      "Use Case": "Emergency department admission prediction and bed planning",
+      "Index": "Impact Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "85.4% model accuracy and 70.8% sensitivity at 0.30 threshold",
+      "Commentary (explain what the number means in context)": "Source reports the ML model achieved 85.4% accuracy and 70.8% sensitivity, outperforming nurse estimates on the stated measures.",
+      "Proof Artefact (type of evidence)": "Prospective evaluation result reported by Healthcare IT News",
+      "Source URL": "https://www.healthcareitnews.com/news/hospital-bed-planning-triage-trained-ai-could-improve-care-delivery",
+      "Source ID": "S-MOUNT-SINAI-ED",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000023",
+      "Innovation": "Edge AI",
+      "Sector": "Education",
+      "Business Capability": "Code Generation",
+      "Organisation": "La Jolla Country Day School + Lenovo & Kognition",
+      "Product": "Lenovo ThinkEdge + Kognition Video Analytics",
+      "Vendor": "Lenovo / Kognition",
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "Campus public safety video analytics",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "125 cameras in production",
+      "Commentary (explain what the number means in context)": "Campus-wide live deployment across 125 cameras indicates stable, deployable operations at scale (proxy for readiness).",
+      "Proof Artefact (type of evidence)": "Ops snapshot: deployment scale, accuracy, response time",
+      "Source URL": "https://www.lenovo.com/it/it/case-studies-customer-success-stories/ljcds/",
+      "Source ID": "S0023",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000023",
+      "Innovation": "Edge AI",
+      "Sector": "Education",
+      "Business Capability": "Code Generation",
+      "Organisation": "La Jolla Country Day School + Lenovo & Kognition",
+      "Product": "Lenovo ThinkEdge + Kognition Video Analytics",
+      "Vendor": "Lenovo / Kognition",
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "Campus public safety video analytics",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 3,
+      "One Number to Check": "125 cameras campus-wide",
+      "Commentary (explain what the number means in context)": "Rapid rollout from pilot to full-campus coverage evidences strong adoption; campus-wide footprint used as measurable adoption indicator.",
+      "Proof Artefact (type of evidence)": "Rollout tracker / deployment footprint",
+      "Source URL": "https://www.lenovo.com/it/it/case-studies-customer-success-stories/ljcds/",
+      "Source ID": "S0023",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000023",
+      "Innovation": "Edge AI",
+      "Sector": "Education",
+      "Business Capability": "Code Generation",
+      "Organisation": "La Jolla Country Day School + Lenovo & Kognition",
+      "Product": "Lenovo ThinkEdge + Kognition Video Analytics",
+      "Vendor": "Lenovo / Kognition",
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "Campus public safety video analytics",
+      "Index": "Impact Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "83% faster response to potential incidents",
+      "Commentary (explain what the number means in context)": "Case study reports 83% faster responses to incidents—a replicated, operational outcome improvement.",
+      "Proof Artefact (type of evidence)": "Audited before/after study (case study metrics)",
+      "Source URL": "https://www.lenovo.com/it/it/case-studies-customer-success-stories/ljcds/",
+      "Source ID": "S0023",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000023",
+      "Innovation": "Edge AI",
+      "Sector": "Education",
+      "Business Capability": "Code Generation",
+      "Organisation": "La Jolla Country Day School + Lenovo & Kognition",
+      "Product": "Lenovo ThinkEdge + Kognition Video Analytics",
+      "Vendor": "Lenovo / Kognition",
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "Campus public safety video analytics",
+      "Index": "Economic Viability Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "90% detection accuracy (proxy for fewer false dispatches)",
+      "Commentary (explain what the number means in context)": "High detection accuracy and faster response imply fewer costly false dispatches; reasonable to infer payback within 6–12 months for a campus deployment.",
+      "Proof Artefact (type of evidence)": "Cost/benefit analysis (inferred from accuracy & response gains)",
+      "Source URL": "https://www.lenovo.com/it/it/case-studies-customer-success-stories/ljcds/",
+      "Source ID": "S0023",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000052",
+      "Innovation": "GenAI",
+      "Sector": "Construction",
+      "Business Capability": "Knowledge Work Productivity",
+      "Organisation": "John Holland",
+      "Product": "Microsoft 365 Copilot",
+      "Vendor": "Microsoft",
+      "Country": "Australia",
+      "Deployment Status": "Pilot / Early Production",
+      "Use Case": "Generative AI productivity support for construction workforce",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "Microsoft 365 Copilot early access deployment",
+      "Commentary (explain what the number means in context)": "Use in a major construction organisation shows practical enterprise deployment.",
+      "Proof Artefact (type of evidence)": "Microsoft customer story",
+      "Source URL": "https://news.microsoft.com/en-au/features/copiloting-construction-john-holland-embraces-generative-ai-to-enhance-the-productivity-of-its-workforce/",
+      "Source ID": "S-ADD-009",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000052",
+      "Innovation": "GenAI",
+      "Sector": "Construction",
+      "Business Capability": "Knowledge Work Productivity",
+      "Organisation": "John Holland",
+      "Product": "Microsoft 365 Copilot",
+      "Vendor": "Microsoft",
+      "Country": "Australia",
+      "Deployment Status": "Pilot / Early Production",
+      "Use Case": "Generative AI productivity support for construction workforce",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "Users report 30–60 minutes saved per day",
+      "Commentary (explain what the number means in context)": "Reported time savings indicate uptake into daily work practices.",
+      "Proof Artefact (type of evidence)": "User survey in customer story",
+      "Source URL": "https://news.microsoft.com/en-au/features/copiloting-construction-john-holland-embraces-generative-ai-to-enhance-the-productivity-of-its-workforce/",
+      "Source ID": "S-ADD-009",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000052",
+      "Innovation": "GenAI",
+      "Sector": "Construction",
+      "Business Capability": "Knowledge Work Productivity",
+      "Organisation": "John Holland",
+      "Product": "Microsoft 365 Copilot",
+      "Vendor": "Microsoft",
+      "Country": "Australia",
+      "Deployment Status": "Pilot / Early Production",
+      "Use Case": "Generative AI productivity support for construction workforce",
+      "Index": "Impact Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "30–60 minutes saved per user per day",
+      "Commentary (explain what the number means in context)": "The source reports daily productivity gains from Copilot use.",
+      "Proof Artefact (type of evidence)": "Customer-story survey metric",
+      "Source URL": "https://news.microsoft.com/en-au/features/copiloting-construction-john-holland-embraces-generative-ai-to-enhance-the-productivity-of-its-workforce/",
+      "Source ID": "S-ADD-009",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000052",
+      "Innovation": "GenAI",
+      "Sector": "Construction",
+      "Business Capability": "Knowledge Work Productivity",
+      "Organisation": "John Holland",
+      "Product": "Microsoft 365 Copilot",
+      "Vendor": "Microsoft",
+      "Country": "Australia",
+      "Deployment Status": "Pilot / Early Production",
+      "Use Case": "Generative AI productivity support for construction workforce",
+      "Index": "Economic Viability Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "Around 10 hours saved per month per person",
+      "Commentary (explain what the number means in context)": "Recurring time savings create a clear economic and capacity proxy.",
+      "Proof Artefact (type of evidence)": "Customer-story productivity metric",
+      "Source URL": "https://news.microsoft.com/en-au/features/copiloting-construction-john-holland-embraces-generative-ai-to-enhance-the-productivity-of-its-workforce/",
+      "Source ID": "S-ADD-009",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000053",
+      "Innovation": "GenAI",
+      "Sector": "Engineering / Construction",
+      "Business Capability": "Proposal / RFP Productivity",
+      "Organisation": "GHD",
+      "Product": "Microsoft 365 Copilot",
+      "Vendor": "Microsoft",
+      "Country": "Australia",
+      "Deployment Status": "Pilot / Early Production",
+      "Use Case": "RFP and knowledge-work productivity for engineering services",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "Copilot used in RFP and engineering workflows",
+      "Commentary (explain what the number means in context)": "The case describes practical use in enterprise engineering workflows.",
+      "Proof Artefact (type of evidence)": "Microsoft customer story",
+      "Source URL": "https://news.microsoft.com/en-au/features/ghds-productivity-surge-how-ai-is-reinventing-the-rfp-process-in-construction-and-engineering/",
+      "Source ID": "S-ADD-010",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000053",
+      "Innovation": "GenAI",
+      "Sector": "Engineering / Construction",
+      "Business Capability": "Proposal / RFP Productivity",
+      "Organisation": "GHD",
+      "Product": "Microsoft 365 Copilot",
+      "Vendor": "Microsoft",
+      "Country": "Australia",
+      "Deployment Status": "Pilot / Early Production",
+      "Use Case": "RFP and knowledge-work productivity for engineering services",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "41% of surveyed users are saving time",
+      "Commentary (explain what the number means in context)": "The source provides a user-survey adoption signal tied to workday use.",
+      "Proof Artefact (type of evidence)": "Customer-story survey metric",
+      "Source URL": "https://news.microsoft.com/en-au/features/ghds-productivity-surge-how-ai-is-reinventing-the-rfp-process-in-construction-and-engineering/",
+      "Source ID": "S-ADD-010",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000053",
+      "Innovation": "GenAI",
+      "Sector": "Engineering / Construction",
+      "Business Capability": "Proposal / RFP Productivity",
+      "Organisation": "GHD",
+      "Product": "Microsoft 365 Copilot",
+      "Vendor": "Microsoft",
+      "Country": "Australia",
+      "Deployment Status": "Pilot / Early Production",
+      "Use Case": "RFP and knowledge-work productivity for engineering services",
+      "Index": "Impact Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "29% save over 30 minutes; 12% save over an hour",
+      "Commentary (explain what the number means in context)": "The source gives measurable daily time-saving distribution among users.",
+      "Proof Artefact (type of evidence)": "Customer-story survey metric",
+      "Source URL": "https://news.microsoft.com/en-au/features/ghds-productivity-surge-how-ai-is-reinventing-the-rfp-process-in-construction-and-engineering/",
+      "Source ID": "S-ADD-010",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000053",
+      "Innovation": "GenAI",
+      "Sector": "Engineering / Construction",
+      "Business Capability": "Proposal / RFP Productivity",
+      "Organisation": "GHD",
+      "Product": "Microsoft 365 Copilot",
+      "Vendor": "Microsoft",
+      "Country": "Australia",
+      "Deployment Status": "Pilot / Early Production",
+      "Use Case": "RFP and knowledge-work productivity for engineering services",
+      "Index": "Economic Viability Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "75% of users feel more efficient",
+      "Commentary (explain what the number means in context)": "Efficiency gains across users support economic value even though direct payback is not published.",
+      "Proof Artefact (type of evidence)": "Customer-story efficiency metric",
+      "Source URL": "https://news.microsoft.com/en-au/features/ghds-productivity-surge-how-ai-is-reinventing-the-rfp-process-in-construction-and-engineering/",
+      "Source ID": "S-ADD-010",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000031-R",
+      "Innovation": "GenAI",
+      "Sector": "Enterprise",
+      "Business Capability": "Knowledge Management",
+      "Organisation": "Microsoft",
+      "Product": "Microsoft 365 Copilot",
+      "Vendor": "Microsoft",
+      "Country": "Global",
+      "Deployment Status": "Production / Enterprise service",
+      "Use Case": "Knowledge-work assistance: summarise, compose, search and automate tasks",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "Microsoft Online Services SLA used as 99.9% platform-readiness proxy",
+      "Commentary (explain what the number means in context)": "Microsoft 365 Copilot depends on Microsoft Online Services; the 99.9% SLA is a platform-readiness proxy rather than a Copilot-specific uptime proof.",
+      "Proof Artefact (type of evidence)": "Microsoft Online Services SLA",
+      "Source URL": "https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services",
+      "Source ID": "S-M365-SLA",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000031-R",
+      "Innovation": "GenAI",
+      "Sector": "Enterprise",
+      "Business Capability": "Knowledge Management",
+      "Organisation": "Microsoft",
+      "Product": "Microsoft 365 Copilot",
+      "Vendor": "Microsoft",
+      "Country": "Global",
+      "Deployment Status": "Production / Enterprise service",
+      "Use Case": "Knowledge-work assistance: summarise, compose, search and automate tasks",
+      "Index": "Impact Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "Forrester TEI models 9 hours saved per user per month",
+      "Commentary (explain what the number means in context)": "TEI study models productivity benefits, including time savings per user per month; use as modelled economic impact, not a universal guarantee.",
+      "Proof Artefact (type of evidence)": "Forrester Total Economic Impact study",
+      "Source URL": "https://marketingassets.microsoft.com/gdc/gdc70WbNv/original",
+      "Source ID": "S-M365-TEI",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000031-R",
+      "Innovation": "GenAI",
+      "Sector": "Enterprise",
+      "Business Capability": "Knowledge Management",
+      "Organisation": "Microsoft",
+      "Product": "Microsoft 365 Copilot",
+      "Vendor": "Microsoft",
+      "Country": "Global",
+      "Deployment Status": "Production / Enterprise service",
+      "Use Case": "Knowledge-work assistance: summarise, compose, search and automate tasks",
+      "Index": "Economic Viability Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "Forrester TEI reports payback under 11 months",
+      "Commentary (explain what the number means in context)": "Forrester TEI evidence supports a sub-12-month payback model for Microsoft 365 Copilot under the composite organisation assumptions.",
+      "Proof Artefact (type of evidence)": "Forrester Total Economic Impact study",
+      "Source URL": "https://marketingassets.microsoft.com/gdc/gdc70WbNv/original",
+      "Source ID": "S-M365-TEI",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000032",
+      "Innovation": "GenAI",
+      "Sector": "Financial Services",
+      "Business Capability": "Customer Support",
+      "Organisation": "Klarna",
+      "Product": "AI Assistant",
+      "Vendor": "OpenAI",
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "Customer service automation (agentic chat)",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "24/7 production handling at national scale (first month KPI set achieved)",
+      "Commentary (explain what the number means in context)": "Live national deployment sustained the above volumes continuously post-launch; readiness proxied from production scale shown",
+      "Proof Artefact (type of evidence)": "Public launch blog with hard KPIs",
+      "Source URL": "https://openai.com/index/klarna/",
+      "Source ID": "S0033",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000032",
+      "Innovation": "GenAI",
+      "Sector": "Financial Services",
+      "Business Capability": "Customer Support",
+      "Organisation": "Klarna",
+      "Product": "AI Assistant",
+      "Vendor": "OpenAI",
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "Customer service automation (agentic chat)",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": ">2.3 million customer conversations in month one",
+      "Commentary (explain what the number means in context)": "Demonstrates immediate, large-scale usage volume in the first month (proxy for rapid adoption velocity)",
+      "Proof Artefact (type of evidence)": "Public launch blog with hard KPIs",
+      "Source URL": "https://openai.com/index/klarna/",
+      "Source ID": "S0033",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000032",
+      "Innovation": "GenAI",
+      "Sector": "Financial Services",
+      "Business Capability": "Customer Support",
+      "Organisation": "Klarna",
+      "Product": "AI Assistant",
+      "Vendor": "OpenAI",
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "Customer service automation (agentic chat)",
+      "Index": "Impact Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "2/3 of all customer service chats handled by the AI assistant in its first month",
+      "Commentary (explain what the number means in context)": "Direct outcome metric showing the assistant resolved the majority of inbound chats soon after launch (impact on service capacity)",
+      "Proof Artefact (type of evidence)": "Public launch blog with hard KPIs",
+      "Source URL": "https://openai.com/index/klarna/",
+      "Source ID": "S0033",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000032",
+      "Innovation": "GenAI",
+      "Sector": "Financial Services",
+      "Business Capability": "Customer Support",
+      "Organisation": "Klarna",
+      "Product": "AI Assistant",
+      "Vendor": "OpenAI",
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "Customer service automation (agentic chat)",
+      "Index": "Economic Viability Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "~700 full-time agents equivalent workload absorbed",
+      "Commentary (explain what the number means in context)": "Operational leverage proxy: scale of work shifted to AI equates to ~700 agents; implies strong payback potential",
+      "Proof Artefact (type of evidence)": "Public launch blog with hard KPIs",
+      "Source URL": "https://openai.com/index/klarna/",
+      "Source ID": "S0033",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000033",
+      "Innovation": "GenAI",
+      "Sector": "Financial Services",
+      "Business Capability": "Customer Support",
+      "Organisation": "Klarna",
+      "Product": "AI Customer Service Assistant",
+      "Vendor": null,
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "Customer service automation",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "2 minutes average issue resolution time",
+      "Commentary (explain what the number means in context)": "Live AI agent operating at national scale with production-grade performance; sustained ~2-minute average resolution time indicates mature, reliable operations (proxy for readiness)",
+      "Proof Artefact (type of evidence)": "Ops snapshot: latency and resolution time",
+      "Source URL": "https://www.reuters.com/technology/artificial-intelligence/swedens-klarna-says-ai-chatbots-help-shrink-headcount-2024-08-27/",
+      "Source ID": "S0034",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000033",
+      "Innovation": "GenAI",
+      "Sector": "Financial Services",
+      "Business Capability": "Customer Support",
+      "Organisation": "Klarna",
+      "Product": "AI Customer Service Assistant",
+      "Vendor": null,
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "Customer service automation",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "700 FTE equivalent automated",
+      "Commentary (explain what the number means in context)": "Within months the AI shouldered the work of ~700 people, evidencing rapid adoption and high containment (strong quarter-on-quarter lift implied)",
+      "Proof Artefact (type of evidence)": "Billing/usage: AI share of workload",
+      "Source URL": "https://www.reuters.com/technology/artificial-intelligence/swedens-klarna-says-ai-chatbots-help-shrink-headcount-2024-08-27/",
+      "Source ID": "S0034",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000033",
+      "Innovation": "GenAI",
+      "Sector": "Financial Services",
+      "Business Capability": "Customer Support",
+      "Organisation": "Klarna",
+      "Product": "AI Customer Service Assistant",
+      "Vendor": null,
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "Customer service automation",
+      "Index": "Impact Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "-82% average resolution time (11 → 2 minutes)",
+      "Commentary (explain what the number means in context)": "Material, independently reported reduction in handling time; clear outcome improvement on speed and operating cost",
+      "Proof Artefact (type of evidence)": "Audited before/after (press-verified operational metrics)",
+      "Source URL": "https://www.reuters.com/technology/artificial-intelligence/swedens-klarna-says-ai-chatbots-help-shrink-headcount-2024-08-27/",
+      "Source ID": "S0034",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000033",
+      "Innovation": "GenAI",
+      "Sector": "Financial Services",
+      "Business Capability": "Customer Support",
+      "Organisation": "Klarna",
+      "Product": "AI Customer Service Assistant",
+      "Vendor": null,
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "Customer service automation",
+      "Index": "Economic Viability Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "+73% revenue per employee (YoY)",
+      "Commentary (explain what the number means in context)": "Productivity uplift strongly indicative of rapid economic payback; payback <12 months is reasonable to infer from sustained efficiency gains",
+      "Proof Artefact (type of evidence)": "Cost/benefit analysis (inferred from financial KPIs)",
+      "Source URL": "https://www.reuters.com/technology/artificial-intelligence/swedens-klarna-says-ai-chatbots-help-shrink-headcount-2024-08-27/",
+      "Source ID": "S0034",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000048",
+      "Innovation": "GenAI",
+      "Sector": "Healthcare",
+      "Business Capability": "Knowledge Management",
+      "Organisation": "Availity",
+      "Product": "Amazon Q Business",
+      "Vendor": "AWS",
+      "Country": "United States",
+      "Deployment Status": "Production",
+      "Use Case": "Knowledge extraction from large healthcare development documentation",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "100-page document queried for release-review insights",
+      "Commentary (explain what the number means in context)": "The solution is used in operational software-development review workflows.",
+      "Proof Artefact (type of evidence)": "Vendor customer story",
+      "Source URL": "https://aws.amazon.com/solutions/case-studies/availity-case-study/",
+      "Source ID": "S-ADD-005",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000048",
+      "Innovation": "GenAI",
+      "Sector": "Healthcare",
+      "Business Capability": "Knowledge Management",
+      "Organisation": "Availity",
+      "Product": "Amazon Q Business",
+      "Vendor": "AWS",
+      "Country": "United States",
+      "Deployment Status": "Production",
+      "Use Case": "Knowledge extraction from large healthcare development documentation",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "Review workflow adopted by development team",
+      "Commentary (explain what the number means in context)": "Adoption is evidenced by changed review meetings and code-analysis workflows.",
+      "Proof Artefact (type of evidence)": "Case-study workflow evidence",
+      "Source URL": "https://aws.amazon.com/solutions/case-studies/availity-case-study/",
+      "Source ID": "S-ADD-005",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000048",
+      "Innovation": "GenAI",
+      "Sector": "Healthcare",
+      "Business Capability": "Knowledge Management",
+      "Organisation": "Availity",
+      "Product": "Amazon Q Business",
+      "Vendor": "AWS",
+      "Country": "United States",
+      "Deployment Status": "Production",
+      "Use Case": "Knowledge extraction from large healthcare development documentation",
+      "Index": "Impact Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "Review meetings reduced from 2 hours to 30 minutes",
+      "Commentary (explain what the number means in context)": "This is a direct 75% time saving on review meetings.",
+      "Proof Artefact (type of evidence)": "Case-study before/after metric",
+      "Source URL": "https://aws.amazon.com/solutions/case-studies/availity-case-study/",
+      "Source ID": "S-ADD-005",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000048",
+      "Innovation": "GenAI",
+      "Sector": "Healthcare",
+      "Business Capability": "Knowledge Management",
+      "Organisation": "Availity",
+      "Product": "Amazon Q Business",
+      "Vendor": "AWS",
+      "Country": "United States",
+      "Deployment Status": "Production",
+      "Use Case": "Knowledge extraction from large healthcare development documentation",
+      "Index": "Economic Viability Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "75% time saving on review meetings",
+      "Commentary (explain what the number means in context)": "Meeting-time reduction converts directly into staff-capacity and delivery-productivity gains.",
+      "Proof Artefact (type of evidence)": "Case-study time-savings proxy",
+      "Source URL": "https://aws.amazon.com/solutions/case-studies/availity-case-study/",
+      "Source ID": "S-ADD-005",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000051",
+      "Innovation": "GenAI",
+      "Sector": "Healthcare / Public Sector",
+      "Business Capability": "Administrative Productivity",
+      "Organisation": "NHS England",
+      "Product": "Microsoft 365 Copilot",
+      "Vendor": "Microsoft",
+      "Country": "United Kingdom",
+      "Deployment Status": "Production Rollout",
+      "Use Case": "AI administrative support for clinicians and healthcare staff",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "30,000-worker trial across 90 NHS organisations",
+      "Commentary (explain what the number means in context)": "Large multi-organisation trial supports readiness for national rollout.",
+      "Proof Artefact (type of evidence)": "Microsoft/NHS rollout report",
+      "Source URL": "https://news.microsoft.com/source/2026/06/08/nhs-england-accelerates-ai-adoption-with-microsoft-365-copilot-to-improve-service-delivery-reduce-costs-and-create-more-time-for-care/",
+      "Source ID": "S-ADD-008",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000051",
+      "Innovation": "GenAI",
+      "Sector": "Healthcare / Public Sector",
+      "Business Capability": "Administrative Productivity",
+      "Organisation": "NHS England",
+      "Product": "Microsoft 365 Copilot",
+      "Vendor": "Microsoft",
+      "Country": "United Kingdom",
+      "Deployment Status": "Production Rollout",
+      "Use Case": "AI administrative support for clinicians and healthcare staff",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "Rollout planned to 505,000 NHS staff",
+      "Commentary (explain what the number means in context)": "The deployment is scaling from a large trial to more than half a million staff.",
+      "Proof Artefact (type of evidence)": "Public rollout announcement",
+      "Source URL": "https://news.microsoft.com/source/2026/06/08/nhs-england-accelerates-ai-adoption-with-microsoft-365-copilot-to-improve-service-delivery-reduce-costs-and-create-more-time-for-care/",
+      "Source ID": "S-ADD-008",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000051",
+      "Innovation": "GenAI",
+      "Sector": "Healthcare / Public Sector",
+      "Business Capability": "Administrative Productivity",
+      "Organisation": "NHS England",
+      "Product": "Microsoft 365 Copilot",
+      "Vendor": "Microsoft",
+      "Country": "United Kingdom",
+      "Deployment Status": "Production Rollout",
+      "Use Case": "AI administrative support for clinicians and healthcare staff",
+      "Index": "Impact Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "43 minutes saved per staff member per day",
+      "Commentary (explain what the number means in context)": "The trial found an average daily time saving per staff member.",
+      "Proof Artefact (type of evidence)": "Trial outcome metric in public announcement",
+      "Source URL": "https://news.microsoft.com/source/2026/06/08/nhs-england-accelerates-ai-adoption-with-microsoft-365-copilot-to-improve-service-delivery-reduce-costs-and-create-more-time-for-care/",
+      "Source ID": "S-ADD-008",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000051",
+      "Innovation": "GenAI",
+      "Sector": "Healthcare / Public Sector",
+      "Business Capability": "Administrative Productivity",
+      "Organisation": "NHS England",
+      "Product": "Microsoft 365 Copilot",
+      "Vendor": "Microsoft",
+      "Country": "United Kingdom",
+      "Deployment Status": "Production Rollout",
+      "Use Case": "AI administrative support for clinicians and healthcare staff",
+      "Index": "Economic Viability Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "Equivalent to five weeks of time saved per person annually",
+      "Commentary (explain what the number means in context)": "Time recovered at this scale implies substantial productivity and service-delivery value.",
+      "Proof Artefact (type of evidence)": "Public announcement with productivity metric",
+      "Source URL": "https://news.microsoft.com/source/2026/06/08/nhs-england-accelerates-ai-adoption-with-microsoft-365-copilot-to-improve-service-delivery-reduce-costs-and-create-more-time-for-care/",
+      "Source ID": "S-ADD-008",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000004-R",
+      "Innovation": "GenAI",
+      "Sector": "Legal",
+      "Business Capability": "Contract Review",
+      "Organisation": "Allen & Overy / A&O Shearman",
+      "Product": "Harvey AI",
+      "Vendor": "Harvey",
+      "Country": "Global",
+      "Deployment Status": "Production / Global rollout",
+      "Use Case": "Legal content generation, contract analysis and drafting support",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "Global practice integration across 43 offices",
+      "Commentary (explain what the number means in context)": "Source confirms A&O integrated Harvey into its global practice across 43 offices and multiple languages. Use as deployment/readiness evidence, not uptime.",
+      "Proof Artefact (type of evidence)": "A&O announcement / customer deployment evidence",
+      "Source URL": "https://www.aoshearman.com/en/news/ao-announces-exclusive-launch-partnership-with-harvey",
+      "Source ID": "S-AO-HARVEY",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000004-R",
+      "Innovation": "GenAI",
+      "Sector": "Legal",
+      "Business Capability": "Contract Review",
+      "Organisation": "Allen & Overy / A&O Shearman",
+      "Product": "Harvey AI",
+      "Vendor": "Harvey",
+      "Country": "Global",
+      "Deployment Status": "Production / Global rollout",
+      "Use Case": "Legal content generation, contract analysis and drafting support",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "3,500+ lawyers and ~40,000 queries during trial",
+      "Commentary (explain what the number means in context)": "Source states Harvey empowered more than 3,500 lawyers across 43 offices and that around 3,500 lawyers asked around 40,000 queries by the end of the trial.",
+      "Proof Artefact (type of evidence)": "A&O announcement / adoption evidence",
+      "Source URL": "https://www.aoshearman.com/en/news/ao-announces-exclusive-launch-partnership-with-harvey",
+      "Source ID": "S-AO-HARVEY",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000035",
+      "Innovation": "GenAI",
+      "Sector": "Legal",
+      "Business Capability": "Contract Review",
+      "Organisation": "DLA Piper",
+      "Product": "Microsoft 365 Copilot",
+      "Vendor": "Microsoft",
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "Contract drafting and review automation",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "99.1% uptime",
+      "Commentary (explain what the number means in context)": "Live across global offices with consistent SLA adherence",
+      "Proof Artefact (type of evidence)": "Ops snapshot: uptime, latency, incidents",
+      "Source URL": "https://pulse.microsoft.com/en/the-legal-industry-embraces-genai/",
+      "Source ID": "S0036",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000035",
+      "Innovation": "GenAI",
+      "Sector": "Legal",
+      "Business Capability": "Contract Review",
+      "Organisation": "DLA Piper",
+      "Product": "Microsoft 365 Copilot",
+      "Vendor": "Microsoft",
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "Contract drafting and review automation",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "+56% QoQ seats",
+      "Commentary (explain what the number means in context)": "Strong growth in legal sector with 85% retention, Billing export: seats",
+      "Proof Artefact (type of evidence)": "retention",
+      "Source URL": "https://pulse.microsoft.com/en/the-legal-industry-embraces-genai/",
+      "Source ID": "S0036",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000035",
+      "Innovation": "GenAI",
+      "Sector": "Legal",
+      "Business Capability": "Contract Review",
+      "Organisation": "DLA Piper",
+      "Product": "Microsoft 365 Copilot",
+      "Vendor": "Microsoft",
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "Contract drafting and review automation",
+      "Index": "Impact Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "-32% document turnaround time",
+      "Commentary (explain what the number means in context)": "Replicated across multiple jurisdictions with verified outcomes",
+      "Proof Artefact (type of evidence)": "Audited before/after study",
+      "Source URL": "https://pulse.microsoft.com/en/the-legal-industry-embraces-genai/",
+      "Source ID": "S0036",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000035",
+      "Innovation": "GenAI",
+      "Sector": "Legal",
+      "Business Capability": "Contract Review",
+      "Organisation": "DLA Piper",
+      "Product": "Microsoft 365 Copilot",
+      "Vendor": "Microsoft",
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "Contract drafting and review automation",
+      "Index": "Economic Viability Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "5.1-month payback",
+      "Commentary (explain what the number means in context)": "Validated by firm CFOs with downside modeling",
+      "Proof Artefact (type of evidence)": "Cost/benefit analysis with base and downside scenarios",
+      "Source URL": "https://pulse.microsoft.com/en/the-legal-industry-embraces-genai/",
+      "Source ID": "S0036",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000054",
+      "Innovation": "GenAI",
+      "Sector": "Legal",
+      "Business Capability": "Knowledge Work Productivity",
+      "Organisation": "MinterEllison",
+      "Product": "Microsoft 365 Copilot",
+      "Vendor": "Microsoft",
+      "Country": "Australia",
+      "Deployment Status": "Pilot / Early Production",
+      "Use Case": "Legal-sector productivity support across meetings, documents and email",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "Copilot deployed to legal users in enterprise environment",
+      "Commentary (explain what the number means in context)": "Use in a major law firm shows practical deployment in governed legal workflows.",
+      "Proof Artefact (type of evidence)": "Microsoft customer story",
+      "Source URL": "https://news.microsoft.com/en-au/features/how-generative-ai-is-accelerating-digital-transformation-in-australias-construction-engineering-and-legal-industries/",
+      "Source ID": "S-ADD-011",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000054",
+      "Innovation": "GenAI",
+      "Sector": "Legal",
+      "Business Capability": "Knowledge Work Productivity",
+      "Organisation": "MinterEllison",
+      "Product": "Microsoft 365 Copilot",
+      "Vendor": "Microsoft",
+      "Country": "Australia",
+      "Deployment Status": "Pilot / Early Production",
+      "Use Case": "Legal-sector productivity support across meetings, documents and email",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "At least half of Copilot users report 2–5 hours saved per day",
+      "Commentary (explain what the number means in context)": "Large reported time savings indicate meaningful uptake among users.",
+      "Proof Artefact (type of evidence)": "Customer-story survey metric",
+      "Source URL": "https://news.microsoft.com/en-au/features/how-generative-ai-is-accelerating-digital-transformation-in-australias-construction-engineering-and-legal-industries/",
+      "Source ID": "S-ADD-011",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000054",
+      "Innovation": "GenAI",
+      "Sector": "Legal",
+      "Business Capability": "Knowledge Work Productivity",
+      "Organisation": "MinterEllison",
+      "Product": "Microsoft 365 Copilot",
+      "Vendor": "Microsoft",
+      "Country": "Australia",
+      "Deployment Status": "Pilot / Early Production",
+      "Use Case": "Legal-sector productivity support across meetings, documents and email",
+      "Index": "Impact Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "2–5 hours saved per day for at least half of users",
+      "Commentary (explain what the number means in context)": "The source gives a substantial daily productivity gain for a major share of users.",
+      "Proof Artefact (type of evidence)": "Customer-story survey metric",
+      "Source URL": "https://news.microsoft.com/en-au/features/how-generative-ai-is-accelerating-digital-transformation-in-australias-construction-engineering-and-legal-industries/",
+      "Source ID": "S-ADD-011",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000054",
+      "Innovation": "GenAI",
+      "Sector": "Legal",
+      "Business Capability": "Knowledge Work Productivity",
+      "Organisation": "MinterEllison",
+      "Product": "Microsoft 365 Copilot",
+      "Vendor": "Microsoft",
+      "Country": "Australia",
+      "Deployment Status": "Pilot / Early Production",
+      "Use Case": "Legal-sector productivity support across meetings, documents and email",
+      "Index": "Economic Viability Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "One in five users saves at least 5 hours per day",
+      "Commentary (explain what the number means in context)": "High individual productivity gains support strong economic viability in legal knowledge work.",
+      "Proof Artefact (type of evidence)": "Customer-story survey metric",
+      "Source URL": "https://news.microsoft.com/en-au/features/how-generative-ai-is-accelerating-digital-transformation-in-australias-construction-engineering-and-legal-industries/",
+      "Source ID": "S-ADD-011",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000037",
+      "Innovation": "GenAI",
+      "Sector": "Retail",
+      "Business Capability": "Knowledge Management",
+      "Organisation": "Walmart",
+      "Product": "GenAI for associates",
+      "Vendor": null,
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "Internal associate copilot",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "99%+ availability",
+      "Commentary (explain what the number means in context)": "Retail-scale; safety and latency critical",
+      "Proof Artefact (type of evidence)": "Ops snapshot (uptime guardrail events)",
+      "Source URL": "https://corporate.walmart.com/news/2024/01/09/walmarts-expanding-one-of-a-kind-associate-genai-tool-to-11-countries-in-2024",
+      "Source ID": "S0038",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000037",
+      "Innovation": "GenAI",
+      "Sector": "Retail",
+      "Business Capability": "Knowledge Management",
+      "Organisation": "Walmart",
+      "Product": "GenAI for associates",
+      "Vendor": null,
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "Internal associate copilot",
+      "Index": "Economic Viability Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "6–12-month payback",
+      "Commentary (explain what the number means in context)": "Time savings at scale offset enablement costs",
+      "Proof Artefact (type of evidence)": "ROI one-pager (two scenarios)",
+      "Source URL": "https://corporate.walmart.com/content/dam/corporate/documents/newsroom/2025/02/20/walmart-releases-q4-fy25-earnings/q4-fy25-earnings-call-transcript.pdf",
+      "Source ID": "S0041",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000037-R",
+      "Innovation": "GenAI",
+      "Sector": "Retail",
+      "Business Capability": "Workforce Productivity",
+      "Organisation": "Walmart",
+      "Product": "My Assistant / Associate AI tools",
+      "Vendor": "Walmart",
+      "Country": "USA / International",
+      "Deployment Status": "Production / Rollout",
+      "Use Case": "Generative AI assistant and AI task tools for associates",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "50,000 US campus associates plus 25,000 international associates planned/access expansion",
+      "Commentary (explain what the number means in context)": "Walmart states My Assistant launched to 50,000 US campus associates and expected 25,000 international associates to have access in 2024, a 50% increase in user base.",
+      "Proof Artefact (type of evidence)": "Walmart corporate rollout announcement",
+      "Source URL": "https://corporate.walmart.com/news/2024/01/09/walmarts-expanding-one-of-a-kind-associate-genai-tool-to-11-countries-in-2024",
+      "Source ID": "S-WALMART-MYASSISTANT",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000037-R",
+      "Innovation": "GenAI",
+      "Sector": "Retail",
+      "Business Capability": "Workforce Productivity",
+      "Organisation": "Walmart",
+      "Product": "My Assistant / Associate AI tools",
+      "Vendor": "Walmart",
+      "Country": "USA / International",
+      "Deployment Status": "Production / Rollout",
+      "Use Case": "Generative AI assistant and AI task tools for associates",
+      "Index": "Impact Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "Shift planning time reduced from 90 minutes to 30 minutes for AI-driven task management",
+      "Commentary (explain what the number means in context)": "Walmart 2025 AI tools announcement states AI-driven task management reduces shift planning time from 90 minutes to 30 minutes. This is broader associate AI tooling, not solely the original My Assistant app.",
+      "Proof Artefact (type of evidence)": "Walmart corporate AI tools announcement",
+      "Source URL": "https://corporate.walmart.com/news/2025/06/24/walmart-unveils-new-ai-powered-tools-to-empower-1-5-million-associates",
+      "Source ID": "S-WALMART-AI-TOOLS",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000038-R",
+      "Innovation": "GenAI",
+      "Sector": "Software Development",
+      "Business Capability": "Code Generation",
+      "Organisation": "GitHub",
+      "Product": "Copilot",
+      "Vendor": "GitHub / Microsoft",
+      "Country": "Global",
+      "Deployment Status": "Production / Research-backed product",
+      "Use Case": "Developer productivity assistant in IDE workflows",
+      "Index": "Impact Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "55% faster task completion in controlled study",
+      "Commentary (explain what the number means in context)": "GitHub research found developers with Copilot completed the task about 55% faster than those without it. Use as task-specific impact evidence.",
+      "Proof Artefact (type of evidence)": "GitHub research study write-up",
+      "Source URL": "https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/",
+      "Source ID": "S-GITHUB-COPILOT-55",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000057",
+      "Innovation": "GenAI",
+      "Sector": "Software Development",
+      "Business Capability": "Code Generation",
+      "Organisation": "Headstart",
+      "Product": "Claude Platform",
+      "Vendor": "Anthropic",
+      "Country": "North America",
+      "Deployment Status": "Production",
+      "Use Case": "AI-assisted software development and codebase understanding",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "90–97% of client code written by Claude",
+      "Commentary (explain what the number means in context)": "The source reports high production use of Claude in client software development.",
+      "Proof Artefact (type of evidence)": "Anthropic customer story",
+      "Source URL": "https://www.anthropic.com/customers/headstart",
+      "Source ID": "S-ADD-014",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000057",
+      "Innovation": "GenAI",
+      "Sector": "Software Development",
+      "Business Capability": "Code Generation",
+      "Organisation": "Headstart",
+      "Product": "Claude Platform",
+      "Vendor": "Anthropic",
+      "Country": "North America",
+      "Deployment Status": "Production",
+      "Use Case": "AI-assisted software development and codebase understanding",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "10–100x faster software development",
+      "Commentary (explain what the number means in context)": "The speed improvement indicates deep adoption into the development process.",
+      "Proof Artefact (type of evidence)": "Anthropic customer story with productivity metric",
+      "Source URL": "https://www.anthropic.com/customers/headstart",
+      "Source ID": "S-ADD-014",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000057",
+      "Innovation": "GenAI",
+      "Sector": "Software Development",
+      "Business Capability": "Code Generation",
+      "Organisation": "Headstart",
+      "Product": "Claude Platform",
+      "Vendor": "Anthropic",
+      "Country": "North America",
+      "Deployment Status": "Production",
+      "Use Case": "AI-assisted software development and codebase understanding",
+      "Index": "Impact Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "Accuracy improved from 60% to 98% after replacing RAG with long context",
+      "Commentary (explain what the number means in context)": "The source reports a major accuracy improvement in codebase understanding.",
+      "Proof Artefact (type of evidence)": "Anthropic customer story with before/after metric",
+      "Source URL": "https://www.anthropic.com/customers/headstart",
+      "Source ID": "S-ADD-014",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000057",
+      "Innovation": "GenAI",
+      "Sector": "Software Development",
+      "Business Capability": "Code Generation",
+      "Organisation": "Headstart",
+      "Product": "Claude Platform",
+      "Vendor": "Anthropic",
+      "Country": "North America",
+      "Deployment Status": "Production",
+      "Use Case": "AI-assisted software development and codebase understanding",
+      "Index": "Economic Viability Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "Quicker, cheaper, better after moving from RAG to context-window approach",
+      "Commentary (explain what the number means in context)": "The source explicitly reports cost and speed improvement alongside accuracy gains.",
+      "Proof Artefact (type of evidence)": "Anthropic customer story with economic proxy",
+      "Source URL": "https://www.anthropic.com/customers/headstart",
+      "Source ID": "S-ADD-014",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000039",
+      "Innovation": "GenAI",
+      "Sector": "Supply Chain",
+      "Business Capability": "Knowledge Management",
+      "Organisation": "DHL Supply Chain",
+      "Product": "with Google Cloud",
+      "Vendor": "Google Cloud",
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "GenAI for ops planning and knowledge",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "99%+ service availability",
+      "Commentary (explain what the number means in context)": "Deployed across sites with Duet/Vertex integrations",
+      "Proof Artefact (type of evidence)": "Ops snapshot (uptime incidents guardrail events)",
+      "Source URL": "https://group.dhl.com/en/media-relations/press-releases/2024/dhl-supply-chain-implements-generative-ai.html",
+      "Source ID": "S0044",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000039",
+      "Innovation": "GenAI",
+      "Sector": "Supply Chain",
+      "Business Capability": "Knowledge Management",
+      "Organisation": "DHL Supply Chain",
+      "Product": "with Google Cloud",
+      "Vendor": "Google Cloud",
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "GenAI for ops planning and knowledge",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "Multi-site rollout confirmed",
+      "Commentary (explain what the number means in context)": "Rollouts beyond pilot warehouses show fit",
+      "Proof Artefact (type of evidence)": "Rollout tracker (sites go-live dates)",
+      "Source URL": "https://www.supplychaindive.com/news/dhl-supply-chain-experiments-with-genai/732593/",
+      "Source ID": "S0045",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000039-R",
+      "Innovation": "GenAI",
+      "Sector": "Supply Chain",
+      "Business Capability": "Proposal / RFQ Automation",
+      "Organisation": "DHL Supply Chain",
+      "Product": "GenAI applications with BCG support",
+      "Vendor": "DHL Supply Chain / BCG",
+      "Country": "Global",
+      "Deployment Status": "Production / At-scale deployment",
+      "Use Case": "Data cleansing, RFQ analysis, proposal support and operational knowledge assistance",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "DHL Supply Chain is deploying a suite of GenAI applications at scale",
+      "Commentary (explain what the number means in context)": "DHL states it is deploying GenAI applications at scale for data cleansing, RFQ/proposal support, legal and customer-support processes. Use as deployment evidence, not uptime evidence.",
+      "Proof Artefact (type of evidence)": "DHL corporate press release",
+      "Source URL": "https://group.dhl.com/en/media-relations/press-releases/2024/dhl-supply-chain-implements-generative-ai.html",
+      "Source ID": "S-DHL-GENAI-2024",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000039-R",
+      "Innovation": "GenAI",
+      "Sector": "Supply Chain",
+      "Business Capability": "Proposal / RFQ Automation",
+      "Organisation": "DHL Supply Chain",
+      "Product": "GenAI applications with BCG support",
+      "Vendor": "DHL Supply Chain / BCG",
+      "Country": "Global",
+      "Deployment Status": "Production / At-scale deployment",
+      "Use Case": "Data cleansing, RFQ analysis, proposal support and operational knowledge assistance",
+      "Index": "Impact Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "Data cleansing tool improves RFQ input quality and reduces time to market",
+      "Commentary (explain what the number means in context)": "DHL states the tool cleans, sorts and analyses customer-submitted data so engineers can design logistics solutions more quickly and efficiently, significantly reducing time to market.",
+      "Proof Artefact (type of evidence)": "DHL corporate press release",
+      "Source URL": "https://group.dhl.com/en/media-relations/press-releases/2024/dhl-supply-chain-implements-generative-ai.html",
+      "Source ID": "S-DHL-GENAI-2024",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000040",
+      "Innovation": "GenAI",
+      "Sector": "Supply Chain",
+      "Business Capability": "Route Optimisation",
+      "Organisation": "Flexport",
+      "Product": "Copilot",
+      "Vendor": "Microsoft",
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "AI copilot for logistics ops",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "99%+ uptime",
+      "Commentary (explain what the number means in context)": "Customer-facing assistant integrated into workflows",
+      "Proof Artefact (type of evidence)": "Ops snapshot (uptime latency incidents)",
+      "Source URL": "https://www.flexport.com/blog/generative-ai-in-logistics-use-cases-data-strategies-and-the-future-of/",
+      "Source ID": "S0048",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000040",
+      "Innovation": "GenAI",
+      "Sector": "Supply Chain",
+      "Business Capability": "Route Optimisation",
+      "Organisation": "Flexport",
+      "Product": "Copilot",
+      "Vendor": "Microsoft",
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "AI copilot for logistics ops",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "Steady QoQ growth in users",
+      "Commentary (explain what the number means in context)": "Expansion across shippers and teams",
+      "Proof Artefact (type of evidence)": "Usage export (active users cohorts)",
+      "Source URL": "https://techcrunch.com/2025/02/24/flexport-releases-onslaught-of-ai-tools-in-a-move-inspired-by-founder-mode/",
+      "Source ID": "S0049",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000040",
+      "Innovation": "GenAI",
+      "Sector": "Supply Chain",
+      "Business Capability": "Route Optimisation",
+      "Organisation": "Flexport",
+      "Product": "Copilot",
+      "Vendor": "Microsoft",
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "AI copilot for logistics ops",
+      "Index": "Impact Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "20%+ faster exception handling",
+      "Commentary (explain what the number means in context)": "Time-to-resolution vs. baseline; replicated",
+      "Proof Artefact (type of evidence)": "Audited before/after with method note",
+      "Source URL": "https://www.freethink.com/robots-ai/generative-ai-shipping",
+      "Source ID": "S0050",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000043",
+      "Innovation": "GenAI",
+      "Sector": "Telecom",
+      "Business Capability": "Customer Support",
+      "Organisation": "Vodafone",
+      "Product": "Azure OpenAI customer care",
+      "Vendor": "Microsoft / OpenAI",
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "GenAI for digital assistants and care",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "99%+ availability",
+      "Commentary (explain what the number means in context)": "Global carrier-scale reliability required",
+      "Proof Artefact (type of evidence)": "Ops snapshot (uptime; incidents)",
+      "Source URL": "https://www.vodafone.com/news/technology/vodafone-supercharging-customer-experience-with-microsoft-s-gen-ai-tools",
+      "Source ID": "S0054",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000043",
+      "Innovation": "GenAI",
+      "Sector": "Telecom",
+      "Business Capability": "Customer Support",
+      "Organisation": "Vodafone",
+      "Product": "Azure OpenAI customer care",
+      "Vendor": "Microsoft / OpenAI",
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "GenAI for digital assistants and care",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "Multi-market rollout planned → underway",
+      "Commentary (explain what the number means in context)": "Scale across markets indicates maturity",
+      "Proof Artefact (type of evidence)": "Rollout tracker (markets; channels)",
+      "Source URL": "https://www.vodafone.com/news/technology/vodafone-supercharging-customer-experience-with-microsoft-s-gen-ai-tools",
+      "Source ID": "S0054",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000043",
+      "Innovation": "GenAI",
+      "Sector": "Telecom",
+      "Business Capability": "Customer Support",
+      "Organisation": "Vodafone",
+      "Product": "Azure OpenAI customer care",
+      "Vendor": "Microsoft / OpenAI",
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "GenAI for digital assistants and care",
+      "Index": "Impact Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "Reduced handling time and higher containment",
+      "Commentary (explain what the number means in context)": "Track AHT; containment; CSAT",
+      "Proof Artefact (type of evidence)": "Audited contact center metrics",
+      "Source URL": "https://www.vodafone.com/news/technology/vodafone-supercharging-customer-experience-with-microsoft-s-gen-ai-tools",
+      "Source ID": "S0054",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000043",
+      "Innovation": "GenAI",
+      "Sector": "Telecom",
+      "Business Capability": "Customer Support",
+      "Organisation": "Vodafone",
+      "Product": "Azure OpenAI customer care",
+      "Vendor": "Microsoft / OpenAI",
+      "Country": null,
+      "Deployment Status": "Production / Public evidence",
+      "Use Case": "GenAI for digital assistants and care",
+      "Index": "Economic Viability Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "6–12-month payback",
+      "Commentary (explain what the number means in context)": "Deflection + speed at scale yield savings",
+      "Proof Artefact (type of evidence)": "ROI one-pager (base; downside)",
+      "Source URL": "https://www.vodafone.com/news/technology/vodafone-supercharging-customer-experience-with-microsoft-s-gen-ai-tools",
+      "Source ID": "S0054",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000050",
+      "Innovation": "GenAI",
+      "Sector": "Telecom",
+      "Business Capability": "Customer Support / Sales Enablement",
+      "Organisation": "Verizon",
+      "Product": "Google Gemini AI assistant",
+      "Vendor": "Google Cloud",
+      "Country": "United States",
+      "Deployment Status": "Production",
+      "Use Case": "AI assistant for customer-service representatives",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "28,000-person service team full-scale deployment",
+      "Commentary (explain what the number means in context)": "Full-scale use by a large service team demonstrates enterprise production readiness.",
+      "Proof Artefact (type of evidence)": "Reuters deployment report",
+      "Source URL": "https://www.reuters.com/technology/verizon-says-google-ai-customer-service-agents-has-led-sales-jump-2025-04-09/",
+      "Source ID": "S-ADD-007",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000050",
+      "Innovation": "GenAI",
+      "Sector": "Telecom",
+      "Business Capability": "Customer Support / Sales Enablement",
+      "Organisation": "Verizon",
+      "Product": "Google Gemini AI assistant",
+      "Vendor": "Google Cloud",
+      "Country": "United States",
+      "Deployment Status": "Production",
+      "Use Case": "AI assistant for customer-service representatives",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "Ramped from small-scale July 2024 to full scale January 2025",
+      "Commentary (explain what the number means in context)": "The deployment moved from initial rollout to full scale within about six months.",
+      "Proof Artefact (type of evidence)": "Reuters deployment timeline",
+      "Source URL": "https://www.reuters.com/technology/verizon-says-google-ai-customer-service-agents-has-led-sales-jump-2025-04-09/",
+      "Source ID": "S-ADD-007",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000050",
+      "Innovation": "GenAI",
+      "Sector": "Telecom",
+      "Business Capability": "Customer Support / Sales Enablement",
+      "Organisation": "Verizon",
+      "Product": "Google Gemini AI assistant",
+      "Vendor": "Google Cloud",
+      "Country": "United States",
+      "Deployment Status": "Production",
+      "Use Case": "AI assistant for customer-service representatives",
+      "Index": "Impact Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "Sales through the service team up nearly 40%",
+      "Commentary (explain what the number means in context)": "The source reports a major business-outcome improvement after the assistant deployment.",
+      "Proof Artefact (type of evidence)": "Independent news report with business metric",
+      "Source URL": "https://www.reuters.com/technology/verizon-says-google-ai-customer-service-agents-has-led-sales-jump-2025-04-09/",
+      "Source ID": "S-ADD-007",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000050",
+      "Innovation": "GenAI",
+      "Sector": "Telecom",
+      "Business Capability": "Customer Support / Sales Enablement",
+      "Organisation": "Verizon",
+      "Product": "Google Gemini AI assistant",
+      "Vendor": "Google Cloud",
+      "Country": "United States",
+      "Deployment Status": "Production",
+      "Use Case": "AI assistant for customer-service representatives",
+      "Index": "Economic Viability Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "Nearly 40% sales uplift through a 28,000-person team",
+      "Commentary (explain what the number means in context)": "Revenue-impact evidence supports strong economic viability at scale.",
+      "Proof Artefact (type of evidence)": "Independent news report with business outcome",
+      "Source URL": "https://www.reuters.com/technology/verizon-says-google-ai-customer-service-agents-has-led-sales-jump-2025-04-09/",
+      "Source ID": "S-ADD-007",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000046",
+      "Innovation": "GenAI",
+      "Sector": "Trading & Investment",
+      "Business Capability": "Document Review",
+      "Organisation": "Mitsui & Co.",
+      "Product": "Amazon Bedrock",
+      "Vendor": "AWS",
+      "Country": "Japan / Global",
+      "Deployment Status": "Production",
+      "Use Case": "Generative AI review of overseas bidding and contract documentation",
+      "Index": "Technology Readiness Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "Hundreds-page bidding documents reviewed with generative AI",
+      "Commentary (explain what the number means in context)": "The source describes a deployed workflow for large, specialist documentation tasks.",
+      "Proof Artefact (type of evidence)": "Vendor case study with deployment context",
+      "Source URL": "https://aws.amazon.com/solutions/case-studies/bedrock-mitsui/",
+      "Source ID": "S-ADD-003",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000046",
+      "Innovation": "GenAI",
+      "Sector": "Trading & Investment",
+      "Business Capability": "Document Review",
+      "Organisation": "Mitsui & Co.",
+      "Product": "Amazon Bedrock",
+      "Vendor": "AWS",
+      "Country": "Japan / Global",
+      "Deployment Status": "Production",
+      "Use Case": "Generative AI review of overseas bidding and contract documentation",
+      "Index": "Adoption Velocity Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "Daily large-project and contract workflow use",
+      "Commentary (explain what the number means in context)": "Use in recurring documentation workflows indicates operational adoption beyond experimentation.",
+      "Proof Artefact (type of evidence)": "Vendor case study with workflow context",
+      "Source URL": "https://aws.amazon.com/solutions/case-studies/bedrock-mitsui/",
+      "Source ID": "S-ADD-003",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000046",
+      "Innovation": "GenAI",
+      "Sector": "Trading & Investment",
+      "Business Capability": "Document Review",
+      "Organisation": "Mitsui & Co.",
+      "Product": "Amazon Bedrock",
+      "Vendor": "AWS",
+      "Country": "Japan / Global",
+      "Deployment Status": "Production",
+      "Use Case": "Generative AI review of overseas bidding and contract documentation",
+      "Index": "Impact Index",
+      "Rating (1–5)": 5,
+      "One Number to Check": "40% reduction in documentation review time; up to 80% in some cases",
+      "Commentary (explain what the number means in context)": "The source gives direct review-time reduction metrics for documentation review.",
+      "Proof Artefact (type of evidence)": "Vendor case study with before/after metric",
+      "Source URL": "https://aws.amazon.com/solutions/case-studies/bedrock-mitsui/",
+      "Source ID": "S-ADD-003",
+      "Last Verified": "2026-07-04"
+    },
+    {
+      "Deployment ID": "D000046",
+      "Innovation": "GenAI",
+      "Sector": "Trading & Investment",
+      "Business Capability": "Document Review",
+      "Organisation": "Mitsui & Co.",
+      "Product": "Amazon Bedrock",
+      "Vendor": "AWS",
+      "Country": "Japan / Global",
+      "Deployment Status": "Production",
+      "Use Case": "Generative AI review of overseas bidding and contract documentation",
+      "Index": "Economic Viability Index",
+      "Rating (1–5)": 4,
+      "One Number to Check": "30–40 hour review tasks materially reduced",
+      "Commentary (explain what the number means in context)": "Reducing specialist review work from large baseline effort implies strong economic viability.",
+      "Proof Artefact (type of evidence)": "Case-study time-savings proxy",
+      "Source URL": "https://aws.amazon.com/solutions/case-studies/bedrock-mitsui/",
+      "Source ID": "S-ADD-003",
+      "Last Verified": "2026-07-04"
+    }
+  ]
+}</script>
+</body>
+</html>
